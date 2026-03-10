@@ -3,813 +3,742 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charles Faaom - GenLife Regenerative Medicine | Advanced Pain Relief Without Surgery</title>
+    <title>GenLife Regenerative Medicine - Patient Growth Strategy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family:Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        :root {
-            --bg-dark: #0c0c0e;
-            --accent: #8B5A3C;
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.8);
-            --text-muted: rgba(255, 255, 255, 0.6);
-        }
-
+        
         body {
             font-family: 'Geist', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
+            background-color: #0c0c0e;
+            color: #ffffff;
+            line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
-
+        
         body::before {
             content: '';
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
-
-        .orb {
+        
+        .ambient-orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(80px);
             pointer-events: none;
-            z-index: 2;
+            z-index: 0;
         }
-
+        
         .orb-1 {
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(139, 90, 60, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.15), transparent 70%);
             top: -200px;
             right: -200px;
         }
-
+        
         .orb-2 {
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(139, 90, 60, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.1), transparent 70%);
             bottom: -150px;
             left: -150px;
         }
-
-        .orb-3 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(139, 90, 60, 0.08) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
-
-        .rv {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .rv.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        
         /* Navigation */
         .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
             background: rgba(12, 12, 14, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            z-index: 1000;
             transition: all 0.3s ease;
         }
-
+        
         .nav.scrolled {
-            padding: 12px 0;
+            padding: 10px 0;
         }
-
+        
         .nav-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 24px;
+            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            transition: padding 0.3s ease;
         }
-
+        
         .nav.scrolled .nav-container {
-            padding: 12px 24px;
+            padding: 15px 20px;
         }
-
-        .nav-brand {
+        
+        .nav-logo {
             font-family: 'Instrument Serif', serif;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 400;
-            color: var(--text-primary);
-            text-decoration: none;
+            color: #c9a84c;
         }
-
+        
         .nav-links {
             display: flex;
             gap: 32px;
             list-style: none;
         }
-
+        
         .nav-links a {
-            color: var(--text-secondary);
+            color: #e0e0e0;
             text-decoration: none;
-            font-size: 14px;
             font-weight: 400;
             transition: color 0.3s ease;
         }
-
+        
         .nav-links a:hover {
-            color: var(--text-primary);
+            color: #c9a84c;
         }
-
+        
         .nav-cta {
-            background: var(--accent);
-            color: white;
-            padding: 10px 20px;
+            background: linear-gradient(135deg, #c9a84c, #b8962f);
+            color: #0c0c0e;
+            padding: 12px 24px;
             border-radius: 25px;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            transition: transform 0.3s ease;
         }
-
+        
         .nav-cta:hover {
-            background: #9d6545;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
-
+        
         /* Hero Section */
         .hero {
             padding: 140px 0 80px;
             text-align: center;
-            position: relative;
-            z-index: 10;
         }
-
+        
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(139, 90, 60, 0.1);
-            border: 1px solid rgba(139, 90, 60, 0.3);
-            border-radius: 25px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.2);
             padding: 8px 16px;
-            margin-bottom: 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #c9a84c;
+            margin-bottom: 32px;
         }
-
+        
         .pulse-dot {
             width: 8px;
             height: 8px;
-            background: var(--accent);
+            background: #c9a84c;
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
-
+        
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
-
-        .hero-badge span {
-            color: var(--accent);
-            font-size: 14px;
-            font-weight: 500;
-        }
-
+        
         .hero h1 {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(48px, 5vw, 72px);
+            font-size: clamp(32px, 5vw, 64px);
             line-height: 1.1;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 24px;
+            color: #ffffff;
         }
-
+        
         .hero-tagline {
             font-family: 'Instrument Serif', serif;
             font-style: italic;
-            font-size: 24px;
-            color: var(--accent);
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: #c9a84c;
             margin-bottom: 24px;
         }
-
+        
         .hero-subhead {
-            font-size: 18px;
-            color: var(--text-secondary);
+            font-size: 20px;
+            color: #b0b0b0;
             margin-bottom: 48px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
-
-        .vsl-container {
+        
+        .hero-video {
             position: relative;
-            max-width: 800px;
-            margin: 0 auto 48px;
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, #1a1a1c 0%, #2a2a2c 100%);
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(201, 168, 76, 0.2);
             border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 auto 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-
+        
         .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 80px;
             height: 80px;
-            background: var(--accent);
+            background: linear-gradient(135deg, #c9a84c, #b8962f);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
+            transition: transform 0.3s ease;
+            animation: pulse-button 3s infinite;
         }
-
+        
         .play-button:hover {
-            transform: translate(-50%, -50%) scale(1.1);
+            transform: scale(1.1);
         }
-
+        
+        @keyframes pulse-button {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(201, 168, 76, 0); }
+        }
+        
         .play-button::after {
             content: '';
             width: 0;
             height: 0;
-            border-left: 20px solid white;
+            border-left: 20px solid #0c0c0e;
             border-top: 12px solid transparent;
             border-bottom: 12px solid transparent;
             margin-left: 4px;
         }
-
+        
         .hero-ctas {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
+        
         .cta-primary {
-            background: var(--accent);
-            color: white;
+            background: linear-gradient(135deg, #c9a84c, #b8962f);
+            color: #0c0c0e;
             padding: 16px 32px;
-            border-radius: 8px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: #ffffff;
+            padding: 16px 32px;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
         }
-
-        .cta-primary:hover {
-            background: #9d6545;
+        
+        .cta-primary:hover, .cta-secondary:hover {
             transform: translateY(-2px);
         }
-
-        .cta-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            padding: 16px 32px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
+        
         .cta-secondary:hover {
-            border-color: var(--accent);
-            background: rgba(139, 90, 60, 0.1);
+            border-color: #c9a84c;
+            color: #c9a84c;
         }
-
+        
         /* Stats Bar */
         .stats-bar {
-            background: rgba(139, 90, 60, 0.05);
-            border-top: 1px solid rgba(139, 90, 60, 0.2);
-            border-bottom: 1px solid rgba(139, 90, 60, 0.2);
-            padding: 48px 0;
-            margin: 80px 0;
+            padding: 60px 0;
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
         }
-
+        
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 48px;
-        }
-
-        .stat-item {
+            gap: 40px;
             text-align: center;
         }
-
-        .stat-number {
+        
+        .stat-item h3 {
             font-family: 'Instrument Serif', serif;
-            font-size: 36px;
-            color: var(--accent);
-            display: block;
+            font-size: 48px;
+            color: #c9a84c;
             margin-bottom: 8px;
         }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        
+        .stat-item p {
+            color: #b0b0b0;
+            font-weight: 300;
         }
-
+        
         /* Marquee */
         .marquee-section {
-            padding: 60px 0;
+            padding: 40px 0;
             overflow: hidden;
+            background: rgba(201, 168, 76, 0.05);
         }
-
+        
         .marquee {
             display: flex;
             animation: scroll 30s linear infinite;
+            white-space: nowrap;
         }
-
+        
         .marquee-item {
             flex-shrink: 0;
             padding: 0 40px;
+            color: #c9a84c;
+            font-weight: 500;
             font-size: 18px;
-            color: var(--text-secondary);
-            position: relative;
         }
-
-        .marquee-item:not(:last-child)::after {
-            content: '•';
-            position: absolute;
-            right: 20px;
-            color: var(--accent);
-        }
-
+        
         @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
-
+        
         /* Problem Section */
         .problem-section {
-            padding: 80px 0;
-            text-align: center;
+            padding: 100px 0;
         }
-
+        
         .section-header {
-            margin-bottom: 64px;
+            text-align: center;
+            margin-bottom: 80px;
         }
-
-        .section-title {
+        
+        .section-header h2 {
             font-family: 'Instrument Serif', serif;
-            font-size: 48px;
+            font-size: clamp(32px, 4vw, 48px);
             margin-bottom: 16px;
+            color: #ffffff;
         }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: var(--text-secondary);
+        
+        .section-header p {
+            font-size: 20px;
+            color: #b0b0b0;
             max-width: 600px;
             margin: 0 auto;
         }
-
+        
         .problem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            max-width: 1000px;
-            margin: 0 auto;
+            gap: 30px;
         }
-
+        
         .problem-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 32px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            border-radius: 16px;
+            padding: 32px;
             position: relative;
         }
-
+        
         .problem-number {
             position: absolute;
-            top: -16px;
-            left: 24px;
-            background: var(--accent);
-            color: white;
+            top: 20px;
+            right: 20px;
             width: 32px;
             height: 32px;
+            background: rgba(201, 168, 76, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 14px;
+            font-weight: 600;
+            color: #c9a84c;
         }
-
+        
         .problem-card h3 {
+            color: #ffffff;
+            margin-bottom: 16px;
             font-size: 20px;
-            margin-bottom: 12px;
-            margin-top: 8px;
         }
-
+        
         .problem-card p {
-            color: var(--text-secondary);
+            color: #b0b0b0;
             line-height: 1.6;
         }
-
+        
         /* Treatments Section */
         .treatments-section {
-            padding: 80px 0;
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.02);
         }
-
-        .treatments-grid {
+        
+        .treatments-container {
             display: grid;
             grid-template-columns: 1fr 300px;
-            gap: 64px;
+            gap: 60px;
             align-items: start;
         }
-
-        .accordion {
-            space-y: 16px;
-        }
-
+        
         .accordion-item {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            padding: 24px 0;
         }
-
+        
         .accordion-header {
-            padding: 24px;
-            background: rgba(255, 255, 255, 0.02);
-            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s ease;
+            cursor: pointer;
+            color: #ffffff;
         }
-
-        .accordion-header:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .accordion-title {
-            font-size: 18px;
+        
+        .accordion-header h3 {
+            font-size: 20px;
             font-weight: 600;
         }
-
+        
         .accordion-icon {
+            width: 20px;
+            height: 20px;
+            color: #c9a84c;
             transition: transform 0.3s ease;
         }
-
-        .accordion-item.active .accordion-icon {
-            transform: rotate(180deg);
-        }
-
+        
         .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .accordion-item.active .accordion-content {
-            max-height: 200px;
-        }
-
-        .accordion-body {
-            padding: 24px;
-            color: var(--text-secondary);
+            padding-top: 16px;
+            color: #b0b0b0;
             line-height: 1.6;
         }
-
+        
         .treatments-sidebar {
             position: sticky;
             top: 120px;
         }
-
+        
         .stat-card {
-            background: linear-gradient(135deg, var(--accent) 0%, #9d6545 100%);
-            color: white;
-            padding: 32px 24px;
-            border-radius: 12px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 16px;
+            padding: 32px;
             text-align: center;
             margin-bottom: 24px;
         }
-
-        .stat-card-number {
+        
+        .stat-card .big-stat {
             font-family: 'Instrument Serif', serif;
             font-size: 48px;
+            color: #c9a84c;
             display: block;
             margin-bottom: 8px;
         }
-
+        
+        .stat-card .stat-label {
+            color: #ffffff;
+            font-weight: 500;
+        }
+        
         .cta-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 32px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 16px;
+            padding: 32px;
             text-align: center;
         }
-
-        .cta-card h3 {
+        
+        .cta-card h4 {
+            color: #ffffff;
             margin-bottom: 16px;
-            font-size: 20px;
+            font-size: 18px;
         }
-
+        
         .cta-card p {
-            color: var(--text-secondary);
+            color: #b0b0b0;
             margin-bottom: 24px;
-            line-height: 1.6;
+            font-size: 14px;
         }
-
+        
         /* Testimonials */
         .testimonials-section {
-            padding: 80px 0;
-            background: rgba(139, 90, 60, 0.02);
+            padding: 100px 0;
         }
-
+        
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 32px;
+            gap: 30px;
         }
-
+        
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            border-radius: 16px;
             padding: 32px;
         }
-
-        .stars {
-            display: flex;
-            gap: 4px;
+        
+        .testimonial-stars {
+            color: #c9a84c;
+            font-size: 18px;
             margin-bottom: 16px;
         }
-
-        .star {
-            width: 16px;
-            height: 16px;
-            background: var(--accent);
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        }
-
+        
         .testimonial-text {
-            color: var(--text-secondary);
+            color: #e0e0e0;
+            font-style: italic;
+            margin-bottom: 20px;
             line-height: 1.6;
-            margin-bottom: 24px;
         }
-
+        
         .testimonial-author {
-            font-weight: 600;
-            color: var(--text-primary);
+            color: #b0b0b0;
+            font-weight: 500;
         }
-
-        .testimonial-title {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
+        
         /* About Section */
         .about-section {
-            padding: 80px 0;
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.02);
         }
-
-        .about-grid {
+        
+        .about-container {
             display: grid;
             grid-template-columns: 1fr 300px;
-            gap: 64px;
+            gap: 60px;
             align-items: center;
         }
-
-        .about-content h2 {
+        
+        .about-text h2 {
             font-family: 'Instrument Serif', serif;
-            font-size: 42px;
+            font-size: 36px;
+            color: #ffffff;
             margin-bottom: 24px;
         }
-
-        .about-text {
-            color: var(--text-secondary);
+        
+        .about-text p {
+            color: #b0b0b0;
             line-height: 1.7;
-            margin-bottom: 32px;
+            margin-bottom: 20px;
         }
-
-        .quote {
+        
+        .about-quote {
             font-family: 'Instrument Serif', serif;
             font-style: italic;
             font-size: 20px;
-            color: var(--accent);
-            margin-bottom: 16px;
+            color: #c9a84c;
+            border-left: 3px solid #c9a84c;
+            padding-left: 20px;
+            margin: 24px 0;
         }
-
-        .author-signature {
-            color: var(--text-muted);
-        }
-
+        
         .about-photo {
-            width: 280px;
-            height: 280px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent) 0%, #9d6545 100%);
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.1));
+            border: 2px solid rgba(201, 168, 76, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Instrument Serif', serif;
-            font-size: 64px;
-            color: white;
+            font-size: 48px;
+            color: #c9a84c;
             margin: 0 auto;
-            box-shadow: 0 0 60px rgba(139, 90, 60, 0.3);
         }
-
+        
         /* CTA Block */
         .cta-block {
-            padding: 80px 0;
-            background: linear-gradient(135deg, rgba(139, 90, 60, 0.1) 0%, rgba(139, 90, 60, 0.05) 100%);
+            padding: 100px 0;
             text-align: center;
         }
-
+        
         .guarantee-row {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 48px;
+            gap: 40px;
             margin-bottom: 48px;
             flex-wrap: wrap;
         }
-
+        
         .guarantee-stat {
             text-align: center;
         }
-
-        .guarantee-number {
+        
+        .guarantee-stat .big-number {
             font-family: 'Instrument Serif', serif;
             font-size: 48px;
-            color: var(--accent);
+            color: #c9a84c;
             display: block;
         }
-
-        .guarantee-label {
-            font-size: 14px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        
+        .guarantee-stat .stat-text {
+            color: #ffffff;
+            font-weight: 500;
+            margin-top: 8px;
         }
-
-        .cta-main {
-            background: var(--accent);
-            color: white;
-            padding: 20px 40px;
-            border-radius: 8px;
-            text-decoration: none;
+        
+        .cta-block h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 36px;
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+        
+        .cta-block p {
+            color: #b0b0b0;
             font-size: 18px;
-            font-weight: 600;
-            display: inline-block;
             margin-bottom: 32px;
-            transition: all 0.3s ease;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        .cta-main:hover {
-            background: #9d6545;
-            transform: translateY(-2px);
-        }
-
+        
         .guarantee-badge {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            padding: 12px 24px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: var(--text-secondary);
+            gap: 12px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            padding: 12px 24px;
+            border-radius: 30px;
+            color: #c9a84c;
+            margin-top: 24px;
         }
-
-        /* FAQ */
+        
+        .guarantee-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* FAQ Section */
         .faq-section {
-            padding: 80px 0;
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.02);
         }
-
-        .faq-list {
+        
+        .faq-container {
             max-width: 800px;
             margin: 0 auto;
         }
-
+        
         .faq-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 32px 0;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            padding: 24px 0;
         }
-
+        
         .faq-question {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: pointer;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 18px;
         }
-
+        
         .faq-answer {
-            color: var(--text-secondary);
+            padding-top: 16px;
+            color: #b0b0b0;
             line-height: 1.6;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
         }
-
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-        }
-
+        
         /* Footer */
         .footer {
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 48px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+            padding: 60px 0 40px;
             text-align: center;
         }
-
+        
         .footer-content h3 {
             font-family: 'Instrument Serif', serif;
             font-size: 24px;
-            margin-bottom: 16px;
+            color: #c9a84c;
+            margin-bottom: 24px;
         }
-
-        .footer-content p {
-            color: var(--text-secondary);
+        
+        .footer-info {
+            color: #b0b0b0;
             margin-bottom: 8px;
         }
-
-        /* Mobile Styles */
+        
+        .footer-info a {
+            color: #c9a84c;
+            text-decoration: none;
+        }
+        
+        .footer-info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Reveal Animation */
+        .reveal {
+            opacity: 1;
+            transform: none;
+            transition: all 0.6s ease;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-
-            .treatments-grid {
+            
+            .treatments-container,
+            .about-container {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                gap: 40px;
             }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-                text-align: center;
+            
+            .treatments-sidebar {
+                position: static;
             }
-
-            .guarantee-row {
-                gap: 24px;
-            }
-
+            
             .hero-ctas {
                 flex-direction: column;
                 align-items: center;
             }
-
-            .cta-primary, .cta-secondary {
+            
+            .cta-primary,
+            .cta-secondary {
                 width: 100%;
                 max-width: 300px;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
 
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-container">
-            <a href="#" class="nav-brand">GenLife Regenerative Medicine</a>
+            <div class="nav-logo">GenLife Regenerative Medicine</div>
             <ul class="nav-links">
                 <li><a href="#treatments">Treatments</a></li>
                 <li><a href="#about">About</a></li>
@@ -821,51 +750,50 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero reveal">
         <div class="container">
-            <div class="hero-badge rv">
+            <div class="hero-badge">
                 <div class="pulse-dot"></div>
-                <span>Advanced Regenerative Medicine</span>
+                Coral Gables Regenerative Medicine Leader
             </div>
+            <h1>Revolutionary Treatments,<br>Empty Waiting Rooms?</h1>
+            <p class="hero-tagline">When cutting-edge regenerative medicine meets outdated patient acquisition</p>
+            <p class="hero-subhead">You're transforming lives with stem cells, PRP, and prolotherapy — but your calendar doesn't reflect your expertise. Let's fix that.</p>
             
-            <h1 class="rv">Your Clinical Excellence Deserves a Full Patient Pipeline</h1>
-            <p class="hero-tagline rv">Stop losing patients to surgery when regenerative medicine can heal them</p>
-            <p class="hero-subhead rv">You're one of Miami's leading regenerative medicine specialists, but your calendar isn't reflecting your expertise. Let's change that with a proven patient acquisition system.</p>
-            
-            <div class="vsl-container rv">
+            <div class="hero-video">
                 <div class="play-button"></div>
             </div>
             
-            <div class="hero-ctas rv">
-                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="cta-primary">Get 40-60 New Patients</a>
+            <div class="hero-ctas">
+                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="cta-primary">Fill Your Schedule</a>
                 <a href="#treatments" class="cta-secondary">See How It Works</a>
             </div>
         </div>
     </section>
 
     <!-- Stats Bar -->
-    <section class="stats-bar">
+    <section class="stats-bar reveal">
         <div class="container">
-            <div class="stats-grid rv">
+            <div class="stats-grid">
                 <div class="stat-item">
-                    <span class="stat-number">40+</span>
-                    <div class="stat-label">Years Experience</div>
+                    <h3>15+</h3>
+                    <p>Years Regenerative Medicine Experience</p>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">1,250</span>
-                    <div class="stat-label">Patients Per Year</div>
+                    <h3>2,000+</h3>
+                    <p>Successful Treatments Performed</p>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">40+</span>
-                    <div class="stat-label">Diplomas of Excellence</div>
+                    <h3>95%</h3>
+                    <p>Patient Satisfaction Rate</p>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">95%</span>
-                    <div class="stat-label">Surgery Avoidance Rate</div>
+                    <h3>8</h3>
+                    <p>Advanced Treatment Modalities</p>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">6</span>
-                    <div class="stat-label">Countries Training Doctors</div>
+                    <h3>500+</h3>
+                    <p>Chronic Pain Cases Resolved</p>
                 </div>
             </div>
         </div>
@@ -879,46 +807,84 @@
             <div class="marquee-item">Prolotherapy</div>
             <div class="marquee-item">Prolozone Therapy</div>
             <div class="marquee-item">A2M Injections</div>
-            <div class="marquee-item">Nerve Hydrodissection</div>
-            <div class="marquee-item">Hormone Replacement</div>
-            <div class="marquee-item">Sports Injury Treatment</div>
-            <div class="marquee-item">Osteoarthritis Treatment</div>
+            <div class="marquee-item">Sports Injury Recovery</div>
             <div class="marquee-item">Chronic Pain Relief</div>
-            <div class="marquee-item">Stem Cell Therapy</div>
-            <div class="marquee-item">PRP Injections</div>
-            <div class="marquee-item">Prolotherapy</div>
-            <div class="marquee-item">Prolozone Therapy</div>
-            <div class="marquee-item">A2M Injections</div>
-            <div class="marquee-item">Nerve Hydrodissection</div>
-            <div class="marquee-item">Hormone Replacement</div>
-            <div class="marquee-item">Sports Injury Treatment</div>
             <div class="marquee-item">Osteoarthritis Treatment</div>
-            <div class="marquee-item">Chronic Pain Relief</div>
+            <div class="marquee-item">Age Management</div>
+            <div class="marquee-item">Clinical Trials</div>
         </div>
     </section>
 
     <!-- Problem Section -->
-    <section class="problem-section">
+    <section class="problem-section reveal">
         <div class="container">
-            <div class="section-header rv">
-                <h2 class="section-title">The Patient Pipeline Problem</h2>
-                <p class="section-subtitle">Even the most skilled regenerative medicine doctors struggle with consistent patient flow</p>
+            <div class="section-header">
+                <h2>The Regenerative Medicine Marketing Gap</h2>
+                <p>Your clinical expertise is world-class. Your patient acquisition strategy... needs regeneration.</p>
             </div>
             
             <div class="problem-grid">
-                <div class="problem-card rv">
+                <div class="problem-card">
                     <div class="problem-number">1</div>
-                    <h3>Patients Don't Know You Exist</h3>
-                    <p>Your ideal patients are searching for pain solutions, but they're finding orthopedic surgeons and pain clinics instead of your regenerative practice.</p>
+                    <h3>Complex Treatments, Simple Marketing</h3>
+                    <p>Most marketing agencies don't understand the nuances of regenerative medicine. They treat your stem cell therapy like basic pain management, missing the revolutionary science that sets you apart.</p>
                 </div>
                 
-                <div class="problem-card rv">
+                <div class="problem-card">
                     <div class="problem-number">2</div>
-                    <h3>Competing with Surgery Centers</h3>
-                    <p>Patients are conditioned to think surgery is their only option. They need education about regenerative alternatives before they book with competitors.</p>
+                    <h3>High-Value Patients Don't Find You</h3>
+                    <p>Patients seeking $5,000+ regenerative treatments aren't scrolling through generic pain clinic ads. They need educational content that builds trust in your advanced methodologies.</p>
                 </div>
                 
-                <div class="problem-card rv">
+                <div class="problem-card">
                     <div class="problem-number">3</div>
-                    <h3>No Consistent Lead Generation</h3>
-                    <p>Referrals are unpredictable and word-of-mouth is slow. You need a reliable system that brings qualified patients to your practice monthly.</p
+                    <h3>Insurance Limitations Create Barriers</h3>
+                    <p>With most regenerative treatments being cash-pay, patients need more convincing. Your marketing must justify significant out-of-pocket investment with clear value propositions.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-number">4</div>
+                    <h3>Regulatory Compliance Confusion</h3>
+                    <p>FDA guidelines around stem cell marketing are complex. You need campaigns that are both effective and compliant, avoiding the pitfalls that shut down other practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatments Section -->
+    <section class="treatments-section reveal" id="treatments">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Regenerative Medicine Marketing System</h2>
+                <p>Specialized strategies for specialized medicine</p>
+            </div>
+            
+            <div class="treatments-container">
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Educational Content Strategy</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            We create comprehensive educational funnels that explain complex regenerative treatments in patient-friendly language. Video series, downloadable guides, and webinars that position you as the trusted authority in stem cell therapy and PRP treatments.
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>High-Intent Patient Targeting</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            Advanced audience targeting reaches patients actively researching alternatives to surgery. We identify individuals with specific conditions like osteoarthritis, sports injuries, and chronic pain who are ready to invest in regenerative solutions.
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Treatment-Specific Landing Pages</h3>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            Dedicated pages for each treatment modality - stem cell therapy
