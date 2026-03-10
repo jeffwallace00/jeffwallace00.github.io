@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Spine & Regenerative Medicine - Dr. Vivek Babaria</title>
+    <title>Dr. Vivek Babaria - Advanced Spine & Sports Medicine</title>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
         body {
-            font-family: 'Geist', sans-serif;
             background: #0c0c0e;
-            color: #fff;
+            font-family: 'Geist', sans-serif;
+            color: #ffffff;
             overflow-x: hidden;
             position: relative;
         }
@@ -19,56 +23,102 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .ambient-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 1;
         }
         
         .orb {
-            position: fixed;
+            position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            pointer-events: none;
-            z-index: 0;
+            filter: blur(60px);
+            opacity: 0.4;
         }
         
-        .orb-1 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%); top: -200px; left: -100px; }
-        .orb-2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%); bottom: -150px; right: -100px; }
-        .orb-3 { width: 250px; height: 250px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .orb-1 {
+            top: 20%;
+            left: 10%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #4a90e2, transparent);
+            animation: float 20s ease-in-out infinite;
+        }
         
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+        .orb-2 {
+            top: 60%;
+            right: 15%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #50c878, transparent);
+            animation: float 15s ease-in-out infinite reverse;
+        }
+        
+        .orb-3 {
+            bottom: 20%;
+            left: 20%;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, #ff6b6b, transparent);
+            animation: float 18s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-10px) translateX(-15px); }
+            75% { transform: translateY(-30px) translateX(5px); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
         
         nav {
             position: fixed;
-            top: 0; left: 0; right: 0;
-            background: rgba(12,12,14,0.9);
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(12, 12, 14, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(201,168,76,0.1);
-            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
             transition: all 0.3s ease;
+            padding: 20px 0;
         }
         
-        nav.scrolled { padding: 12px 0; }
+        nav.scrolled {
+            padding: 12px 0;
+        }
         
-        .nav-container {
+        .nav-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 24px;
-            transition: all 0.3s ease;
         }
         
-        .scrolled .nav-container { padding: 12px 24px; }
-        
-        .nav-logo {
+        .logo {
             font-family: 'Instrument Serif', serif;
             font-size: 24px;
             font-weight: 400;
-            color: #c9a84c;
+            color: #ffffff;
         }
         
         .nav-links {
@@ -78,323 +128,329 @@
         }
         
         .nav-links a {
-            color: rgba(255,255,255,0.8);
+            color: #e0e0e0;
             text-decoration: none;
-            font-size: 14px;
             font-weight: 400;
             transition: color 0.3s ease;
         }
         
-        .nav-links a:hover { color: #c9a84c; }
+        .nav-links a:hover {
+            color: #4a90e2;
+        }
         
         .nav-cta {
-            background: linear-gradient(135deg, #c9a84c 0%, #b8973c 100%);
-            color: #0c0c0e;
+            background: #4a90e2;
+            color: #ffffff;
             padding: 12px 24px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 14px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         
-        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(201,168,76,0.3); }
-        
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
+        .nav-cta:hover {
+            background: #357abd;
+            transform: translateY(-2px);
         }
         
-        section { position: relative; z-index: 2; }
-        
         .hero {
-            padding: 160px 0 120px;
+            padding: 140px 0 80px;
             text-align: center;
+            position: relative;
         }
         
         .badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(201,168,76,0.1);
-            border: 1px solid rgba(201,168,76,0.2);
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            color: #4a90e2;
             padding: 8px 16px;
             border-radius: 50px;
-            margin-bottom: 40px;
             font-size: 14px;
-            color: #c9a84c;
+            font-weight: 500;
+            margin-bottom: 32px;
         }
         
         .pulse-dot {
-            width: 8px; height: 8px;
-            background: #c9a84c;
+            width: 8px;
+            height: 8px;
+            background: #4a90e2;
             border-radius: 50%;
-            animation: pulse 2s infinite;
+            animation: pulse 2s ease-in-out infinite;
         }
         
         @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.1); }
-            100% { opacity: 1; transform: scale(1); }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
         }
         
         .hero h1 {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(48px, 6vw, 72px);
+            font-size: 64px;
             line-height: 1.1;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
         }
         
         .hero .tagline {
             font-family: 'Instrument Serif', serif;
             font-style: italic;
             font-size: 24px;
-            color: #c9a84c;
+            color: #4a90e2;
             margin-bottom: 24px;
         }
         
         .hero .subhead {
-            font-size: 18px;
-            color: rgba(255,255,255,0.8);
+            font-size: 20px;
+            color: #e0e0e0;
             max-width: 600px;
-            margin: 0 auto 48px;
-            line-height: 1.6;
+            margin: 0 auto 40px;
+            line-height: 1.5;
         }
         
         .vsl-container {
-            position: relative;
             max-width: 600px;
-            margin: 0 auto 48px;
+            margin: 0 auto 40px;
+            position: relative;
+            aspect-ratio: 16/9;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .vsl-placeholder {
-            background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, rgba(201,168,76,0.05) 100%);
-            border: 1px solid rgba(201,168,76,0.2);
-            border-radius: 16px;
-            aspect-ratio: 16/9;
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(74, 144, 226, 0.9);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            animation: pulse-play 3s ease-in-out infinite;
         }
         
-        .vsl-placeholder:hover { transform: translateY(-2px); border-color: rgba(201,168,76,0.4); }
+        .play-button:hover {
+            background: #4a90e2;
+            transform: scale(1.1);
+        }
         
-        .play-button {
-            width: 80px; height: 80px;
-            background: rgba(201,168,76,0.2);
-            border: 2px solid #c9a84c;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: #c9a84c;
-            animation: pulse 2s infinite;
+        @keyframes pulse-play {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(74, 144, 226, 0); }
+        }
+        
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 20px solid #ffffff;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
         }
         
         .hero-ctas {
             display: flex;
-            gap: 24px;
+            gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
         }
         
-        .btn-primary, .btn-secondary {
+        .cta-primary {
+            background: #4a90e2;
+            color: #ffffff;
             padding: 16px 32px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 16px;
+            font-size: 18px;
             transition: all 0.3s ease;
-            display: inline-block;
         }
         
-        .btn-primary {
-            background: linear-gradient(135deg, #c9a84c 0%, #b8973c 100%);
-            color: #0c0c0e;
+        .cta-primary:hover {
+            background: #357abd;
+            transform: translateY(-2px);
         }
         
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 48px rgba(201,168,76,0.3); }
-        
-        .btn-secondary {
-            background: transparent;
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.3);
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
         
-        .btn-secondary:hover { border-color: #c9a84c; color: #c9a84c; }
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
         
         .stats-bar {
-            padding: 80px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 48px;
+            gap: 40px;
             text-align: center;
         }
         
-        .stat-item h3 {
+        .stat {
+            color: #ffffff;
+        }
+        
+        .stat-number {
             font-family: 'Instrument Serif', serif;
             font-size: 48px;
-            color: #c9a84c;
+            color: #4a90e2;
             margin-bottom: 8px;
         }
         
-        .stat-item p {
-            color: rgba(255,255,255,0.8);
+        .stat-label {
             font-size: 16px;
+            color: #e0e0e0;
         }
         
         .marquee {
-            padding: 80px 0;
+            padding: 60px 0;
             overflow: hidden;
+            background: rgba(74, 144, 226, 0.03);
         }
         
-        .marquee-track {
+        .marquee-content {
             display: flex;
-            animation: scroll 30s linear infinite;
+            animation: scroll-left 30s linear infinite;
+            gap: 60px;
+        }
+        
+        .marquee-item {
+            flex-shrink: 0;
+            font-size: 18px;
+            color: #e0e0e0;
             white-space: nowrap;
         }
         
-        @keyframes scroll {
+        @keyframes scroll-left {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
         
-        .marquee-item {
-            padding: 16px 32px;
-            background: rgba(201,168,76,0.1);
-            border: 1px solid rgba(201,168,76,0.2);
-            border-radius: 50px;
-            margin-right: 24px;
-            flex-shrink: 0;
-            font-size: 14px;
-            color: #c9a84c;
-            font-weight: 500;
+        .section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 2;
         }
         
-        .problem {
-            padding: 120px 0;
-            text-align: center;
-        }
-        
-        .problem h2 {
+        .section h2 {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(36px, 4vw, 48px);
-            margin-bottom: 24px;
-        }
-        
-        .problem .subtitle {
-            font-size: 18px;
-            color: rgba(255,255,255,0.8);
-            max-width: 600px;
-            margin: 0 auto 80px;
-            line-height: 1.6;
+            font-size: 48px;
+            color: #ffffff;
+            margin-bottom: 60px;
+            text-align: center;
         }
         
         .problem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 32px;
-            max-width: 1000px;
-            margin: 0 auto;
         }
         
-        .problem-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.1);
+        .pain-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 32px;
-            text-align: left;
             position: relative;
+            transition: all 0.3s ease;
         }
         
-        .problem-number {
+        .pain-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+        
+        .pain-number {
             position: absolute;
             top: -16px;
             left: 32px;
-            background: #c9a84c;
-            color: #0c0c0e;
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
+            background: #4a90e2;
+            color: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 18px;
         }
         
-        .problem-card h3 {
+        .pain-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            color: #ffffff;
             margin-bottom: 16px;
-            font-size: 20px;
+            margin-top: 8px;
         }
         
-        .problem-card p {
-            color: rgba(255,255,255,0.8);
+        .pain-card p {
+            color: #e0e0e0;
             line-height: 1.6;
         }
         
         .treatments {
-            padding: 120px 0;
+            background: rgba(255, 255, 255, 0.02);
         }
         
-        .treatments-container {
+        .treatments-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 80px;
+            grid-template-columns: 1fr 300px;
+            gap: 60px;
             align-items: start;
         }
         
+        .accordion {
+            space-y: 16px;
+        }
+        
         .accordion-item {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
         }
         
         .accordion-header {
-            padding: 24px 0;
+            padding: 24px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 18px;
         }
-        
-        .accordion-header h3 {
-            font-size: 24px;
-            transition: color 0.3s ease;
-        }
-        
-        .accordion-toggle {
-            width: 24px;
-            height: 24px;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .accordion-item.active .accordion-header h3 { color: #c9a84c; }
-        .accordion-item.active .accordion-toggle { border-color: #c9a84c; background: #c9a84c; color: #0c0c0e; }
         
         .accordion-content {
-            padding-bottom: 24px;
-            color: rgba(255,255,255,0.8);
+            padding: 0 24px 24px;
+            color: #e0e0e0;
             line-height: 1.6;
-            display: none;
         }
-        
-        .accordion-item.active .accordion-content { display: block; }
         
         .treatments-sidebar {
             position: sticky;
@@ -402,40 +458,45 @@
         }
         
         .stat-card, .cta-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 32px;
+            text-align: center;
             margin-bottom: 24px;
         }
         
         .stat-card h3 {
             font-family: 'Instrument Serif', serif;
             font-size: 36px;
-            color: #c9a84c;
+            color: #4a90e2;
             margin-bottom: 8px;
         }
         
+        .stat-card p {
+            color: #e0e0e0;
+        }
+        
         .cta-card h4 {
-            margin-bottom: 16px;
+            color: #ffffff;
             font-size: 20px;
+            margin-bottom: 16px;
         }
         
-        .cta-card p {
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 24px;
-            line-height: 1.6;
+        .cta-card a {
+            background: #4a90e2;
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            transition: all 0.3s ease;
         }
         
-        .testimonials {
-            padding: 120px 0;
-        }
-        
-        .testimonials h2 {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(36px, 4vw, 48px);
-            text-align: center;
-            margin-bottom: 80px;
+        .cta-card a:hover {
+            background: #357abd;
+            transform: translateY(-2px);
         }
         
         .testimonials-grid {
@@ -444,351 +505,374 @@
             gap: 32px;
         }
         
-        .testimonial-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.1);
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 32px;
         }
         
         .stars {
-            display: flex;
-            gap: 4px;
+            color: #fbbf24;
             margin-bottom: 16px;
-        }
-        
-        .star {
-            color: #c9a84c;
-            font-size: 16px;
+            font-size: 18px;
         }
         
         .testimonial-text {
-            margin-bottom: 24px;
+            color: #e0e0e0;
             line-height: 1.6;
+            margin-bottom: 16px;
             font-style: italic;
         }
         
         .testimonial-author {
-            font-weight: 600;
-            color: #c9a84c;
+            color: #ffffff;
+            font-weight: 500;
         }
         
-        .about {
-            padding: 120px 0;
-        }
-        
-        .about-container {
+        .about-grid {
             display: grid;
             grid-template-columns: 1fr 300px;
-            gap: 80px;
+            gap: 60px;
             align-items: center;
         }
         
-        .about h2 {
+        .about-text h3 {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(36px, 4vw, 48px);
-            margin-bottom: 32px;
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 24px;
         }
         
-        .about p {
-            font-size: 18px;
+        .about-text p {
+            color: #e0e0e0;
             line-height: 1.6;
-            color: rgba(255,255,255,0.8);
             margin-bottom: 24px;
         }
         
         .quote {
-            font-family: 'Instrument Serif', serif;
+            border-left: 4px solid #4a90e2;
+            padding-left: 24px;
             font-style: italic;
-            font-size: 24px;
-            color: #c9a84c;
-            margin: 32px 0;
+            color: #4a90e2;
+            font-size: 18px;
         }
         
         .photo-placeholder {
-            width: 300px;
-            height: 300px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(201,168,76,0.2) 0%, rgba(201,168,76,0.1) 100%);
-            border: 2px solid rgba(201,168,76,0.3);
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.3), rgba(74, 144, 226, 0.1));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 72px;
-            font-weight: 600;
-            color: #c9a84c;
-            box-shadow: 0 0 60px rgba(201,168,76,0.2);
+            margin: 0 auto;
+            border: 3px solid rgba(74, 144, 226, 0.5);
+            box-shadow: 0 0 40px rgba(74, 144, 226, 0.2);
+        }
+        
+        .photo-initials {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: #ffffff;
+            font-weight: 400;
         }
         
         .cta-block {
-            padding: 120px 0;
+            padding: 100px 0;
+            background: rgba(74, 144, 226, 0.05);
             text-align: center;
         }
         
         .guarantee-row {
             display: flex;
             justify-content: center;
-            gap: 32px;
-            margin-bottom: 48px;
+            gap: 40px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
         }
         
         .guarantee-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
+            text-align: center;
         }
         
         .guarantee-number {
             font-family: 'Instrument Serif', serif;
             font-size: 48px;
-            color: #c9a84c;
-        }
-        
-        .guarantee-label {
-            font-size: 14px;
-            color: rgba(255,255,255,0.8);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .guarantee-badge {
-            background: rgba(201,168,76,0.1);
-            border: 1px solid rgba(201,168,76,0.2);
-            padding: 12px 24px;
-            border-radius: 50px;
-            color: #c9a84c;
-            font-size: 14px;
-            font-weight: 500;
-            margin-top: 32px;
-        }
-        
-        .faq {
-            padding: 120px 0;
-        }
-        
-        .faq h2 {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(36px, 4vw, 48px);
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        
-        .faq-item {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 24px;
-        }
-        
-        .faq-question {
-            padding: 24px 0;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 18px;
-            font-weight: 500;
-        }
-        
-        .faq-toggle {
-            transition: transform 0.3s ease;
-        }
-        
-        .faq-item.active .faq-toggle { transform: rotate(180deg); }
-        
-        .faq-answer {
-            padding-bottom: 24px;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.6;
-            display: none;
-        }
-        
-        .faq-item.active .faq-answer { display: block; }
-        
-        footer {
-            padding: 80px 0 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-        }
-        
-        .footer-info h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 32px;
-            color: #c9a84c;
-            margin-bottom: 24px;
-        }
-        
-        .footer-info p {
-            color: rgba(255,255,255,0.8);
+            color: #4a90e2;
             margin-bottom: 8px;
         }
         
-        .rv {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+        .guarantee-label {
+            color: #e0e0e0;
+            font-size: 16px;
         }
         
-        .rv.revealed {
+        .main-cta {
+            background: #4a90e2;
+            color: #ffffff;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 20px;
+            display: inline-block;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .main-cta:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+        }
+        
+        .guarantee-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 12px 24px;
+            color: #ffffff;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        .faq {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 32px 0;
+        }
+        
+        .faq-question {
+            font-family: 'Instrument Serif', serif;
+            font-size: 20px;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        
+        .faq-answer {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        
+        .footer-content p {
+            color: #e0e0e0;
+            margin-bottom: 8px;
+        }
+        
+        .reveal {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
+            transition: all 0.8s ease;
         }
         
         @media (max-width: 768px) {
-            .treatments-container { grid-template-columns: 1fr; gap: 48px; }
-            .about-container { grid-template-columns: 1fr; gap: 48px; text-align: center; }
-            .photo-placeholder { margin: 0 auto; }
-            .guarantee-row { gap: 16px; }
-            .hero-ctas { flex-direction: column; align-items: center; }
+            .container {
+                padding: 0 16px;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero .tagline {
+                font-size: 20px;
+            }
+            
+            .hero .subhead {
+                font-size: 18px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .treatments-grid,
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .guarantee-row {
+                gap: 24px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    
-    <nav id="nav">
-        <div class="nav-container">
-            <div class="nav-logo">OC Spine & Sports Medicine</div>
-            <ul class="nav-links">
-                <li><a href="#treatments">Treatments</a></li>
-                <li><a href="#testimonials">Results</a></li>
-                <li><a href="#about">Doctor</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-            <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="nav-cta">Book a Call</a>
+    <div class="ambient-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">OC Spine and Sports Medicine</div>
+                <ul class="nav-links">
+                    <li><a href="#treatments">Treatments</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Results</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="nav-cta">Book a Call</a>
+            </div>
         </div>
     </nav>
-    
+
     <section class="hero">
         <div class="container">
-            <div class="badge rv">
+            <div class="badge reveal">
                 <div class="pulse-dot"></div>
                 Top 20 Internationally Recognized Spine Expert
             </div>
-            <h1 class="rv">Your Clinical Excellence Deserves a Full Patient Pipeline</h1>
-            <p class="tagline rv">From empty appointment slots to 40-60 qualified consultations monthly</p>
-            <p class="subhead rv">As a NASS committee member and regenerative medicine pioneer, you've mastered the science of healing. Now discover the systematic approach to patient acquisition that matches your clinical expertise.</p>
-            <div class="vsl-container rv">
-                <div class="vsl-placeholder">
-                    <div class="play-button">▶</div>
+            <h1 class="reveal">Your Clinical Excellence Deserves a Full Patient Pipeline</h1>
+            <div class="tagline reveal">Advanced spine care shouldn't struggle to find the right patients</div>
+            <p class="subhead reveal">You've mastered regenerative medicine and elite athlete care. Now let's fill your practice with qualified patients who value your expertise and can afford your premium treatments.</p>
+            
+            <div class="vsl-container reveal">
+                <div class="play-button">
+                    <div class="play-icon"></div>
                 </div>
             </div>
-            <div class="hero-ctas rv">
-                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn-primary">Get 40-60 Qualified Patients</a>
-                <a href="#treatments" class="btn-secondary">See Our Process</a>
+            
+            <div class="hero-ctas reveal">
+                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="cta-primary">Get 40-60 New Consultations</a>
+                <a href="#treatments" class="cta-secondary">See How It Works</a>
             </div>
         </div>
     </section>
-    
+
     <section class="stats-bar">
         <div class="container">
-            <div class="stats-grid rv">
-                <div class="stat-item">
-                    <h3>20+</h3>
-                    <p>Years Advanced Spine Care</p>
+            <div class="stats-grid reveal">
+                <div class="stat">
+                    <div class="stat-number">Top 20</div>
+                    <div class="stat-label">Global Spine Expert</div>
                 </div>
-                <div class="stat-item">
-                    <h3>5,000+</h3>
-                    <p>Patients Treated</p>
+                <div class="stat">
+                    <div class="stat-number">NASS</div>
+                    <div class="stat-label">Committee Member</div>
                 </div>
-                <div class="stat-item">
-                    <h3>15+</h3>
-                    <p>Regenerative Procedures</p>
+                <div class="stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
                 </div>
-                <div class="stat-item">
-                    <h3>98%</h3>
-                    <p>Patient Satisfaction</p>
+                <div class="stat">
+                    <div class="stat-number">5-Star</div>
+                    <div class="stat-label">Patient Reviews</div>
                 </div>
-                <div class="stat-item">
-                    <h3>100%</h3>
-                    <p>Non-Surgical Focus</p>
+                <div class="stat">
+                    <div class="stat-number">Elite</div>
+                    <div class="stat-label">Athlete Care</div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section class="marquee">
-        <div class="marquee-track">
+        <div class="marquee-content">
             <div class="marquee-item">Regenerative Medicine</div>
             <div class="marquee-item">PRP Therapy</div>
-            <div class="marquee-item">Bone Marrow Stem Cells</div>
-            <div class="marquee-item">Regenexx Procedures</div>
+            <div class="marquee-item">Orthobiologics</div>
             <div class="marquee-item">Ultrasound-Guided Injections</div>
-            <div class="marquee-item">Fluoroscopic Guidance</div>
+            <div class="marquee-item">Regenexx Procedures</div>
+            <div class="marquee-item">Bone Marrow Stem Cells</div>
+            <div class="marquee-item">Advanced Fluoroscopic Guidance</div>
             <div class="marquee-item">Intracept Nerve Ablation</div>
-            <div class="marquee-item">Elite Athlete Care</div>
-            <div class="marquee-item">Chronic Pain Management</div>
-            <div class="marquee-item">Sports Medicine</div>
             <div class="marquee-item">Regenerative Medicine</div>
             <div class="marquee-item">PRP Therapy</div>
-            <div class="marquee-item">Bone Marrow Stem Cells</div>
-            <div class="marquee-item">Regenexx Procedures</div>
+            <div class="marquee-item">Orthobiologics</div>
             <div class="marquee-item">Ultrasound-Guided Injections</div>
-            <div class="marquee-item">Fluoroscopic Guidance</div>
+            <div class="marquee-item">Regenexx Procedures</div>
+            <div class="marquee-item">Bone Marrow Stem Cells</div>
+            <div class="marquee-item">Advanced Fluoroscopic Guidance</div>
             <div class="marquee-item">Intracept Nerve Ablation</div>
-            <div class="marquee-item">Elite Athlete Care</div>
-            <div class="marquee-item">Chronic Pain Management</div>
-            <div class="marquee-item">Sports Medicine</div>
         </div>
     </section>
-    
-    <section class="problem">
+
+    <section class="section">
         <div class="container">
-            <h2 class="rv">The Hidden Cost of Empty Appointment Slots</h2>
-            <p class="subtitle rv">Even world-class spine specialists struggle with patient acquisition when traditional marketing falls short of their clinical reputation.</p>
-            <div class="problem-grid">
-                <div class="problem-card rv">
-                    <div class="problem-number">1</div>
-                    <h3>Referral Dependence</h3>
-                    <p>Relying solely on physician referrals limits your patient volume and puts your practice at the mercy of other doctors' schedules and preferences.</p>
+            <h2 class="reveal">Your Expertise Attracts the Wrong Patients</h2>
+            <div class="problem-grid reveal">
+                <div class="pain-card">
+                    <div class="pain-number">1</div>
+                    <h3>Insurance-Dependent Volume</h3>
+                    <p>Your schedule fills with low-value insurance cases while cash-paying patients seeking regenerative medicine can't find you online.</p>
                 </div>
-                <div class="problem-card rv">
-                    <h3>Generic Marketing</h3>
-                    <div class="problem-number">2</div>
-                    <p>Cookie-cutter medical marketing fails to communicate your advanced regenerative techniques and international recognition to ideal patients.</p>
+                <div class="pain-card">
+                    <div class="pain-number">2</div>
+                    <h3>Competitor Visibility</h3>
+                    <p>Less qualified practitioners dominate search results for premium spine treatments while your advanced expertise remains hidden.</p>
                 </div>
-                <div class="problem-card rv">
-                    <div class="problem-number">3</div>
-                    <h3>Wrong Patient Inquiries</h3>
-                    <p>Attracting surgical-seeking patients when you specialize in non-surgical solutions wastes time and creates consultation frustration.</p>
+                <div class="pain-card">
+                    <div class="pain-number">3</div>
+                    <h3>Referral Dependency</h3>
+                    <p>You're waiting for referrals instead of attracting patients who specifically seek NASS-credentialed spine experts and regenerative treatments.</p>
                 </div>
-                <div class="problem-card rv">
-                    <div class="problem-number">4</div>
-                    <h3>Expertise Undervaluation</h3>
-                    <p>Your NASS committee membership and international reputation aren't translating into a premium patient base willing to invest in advanced care.</p>
+                <div class="pain-card">
+                    <div class="pain-number">4</div>
+                    <h3>Revenue Ceiling</h3>
+                    <p>Your practice growth is limited by random patient flow instead of systematically attracting high-value cases that match your expertise level.</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section class="treatments" id="treatments">
+
+    <section class="section treatments" id="treatments">
         <div class="container">
-            <div class="treatments-container">
-                <div class="accordion rv">
-                    <div class="accordion-item active">
+            <h2 class="reveal">Attract Premium Patients Who Value Advanced Care</h2>
+            <div class="treatments-grid reveal">
+                <div class="accordion">
+                    <div class="accordion-item">
                         <div class="accordion-header">
-                            <h3>Patient Avatar Precision</h3>
-                            <div class="accordion-toggle">+</div>
+                            <span>Regenerative Medicine Patient Acquisition</span>
+                            <span>+</span>
                         </div>
                         <div class="accordion-content">
-                            We identify your ideal patients: active professionals, athletes, and quality-of-life seekers who value non-surgical excellence and are willing to invest in regenerative medicine rather than settling for temporary pain management.
+                            Target affluent patients actively seeking PRP therapy, stem cell treatments, and orthobiologics. We position you as the premier regenerative medicine expert in Orange County, attracting patients who understand and value advanced treatments.
                         </div>
                     </div>
                     <div class="accordion-item">
                         <div class="accordion-header">
-                            <h3>Authority-Based Content Strategy</h3>
-                            <div class="accordion-toggle">+</div>
+                            <span>Elite Athlete & High-Performance Marketing</span>
+                            <span>+</span>
                         </div>
                         <div class="accordion-content">
-                            Leverage your NASS committee expertise and international recognition through educational content that positions you as the definitive authority on regenerative spine care, differentiating you from generic pain management practices.
+                            Showcase your elite athlete care experience to attract high-performance individuals, professional athletes, and active patients who need cutting-edge spine treatments and can afford premium care.
                         </div>
                     </div>
                     <div class="accordion-item">
                         <div class="accordion-header">
-                            <h3>Multi-Channel Patient Acquisition</h3>
-                            <div class="accordion-toggle">+</div>
+                            <span>NASS Credibility & Authority Positioning</span>
+                            <span>+</span>
                         </div>
                         <div class="accordion-content">
-                            Deploy targeted campaigns across search, social, and referral networks to reach patients actively seeking advanced spine care, using your elite athlete testimonials and regenerative success stories as conversion drivers.
+                            Leverage your North American Spine Society committee membership and Top 20 international recognition to establish unmatched authority that differentiates you from general practitioners.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Advanced Procedure Demand Generation</span>
+                            <span>+</span>
