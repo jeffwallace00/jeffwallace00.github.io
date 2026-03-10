@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Your Aesthetic Practice Pipeline | Dr. Priti Shukla</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0c0c0e;
+            --text: #ffffff;
+            --text-muted: #a0a0a0;
+            --accent: #c9a84c;
+            --accent-hover: #b8973d;
+            --border: #1a1a1c;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Geist', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--noise);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .orb-1 {
+            top: 20%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.3) 0%, transparent 70%);
+        }
+
+        .orb-2 {
+            bottom: 20%;
+            right: 15%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.2) 0%, transparent 70%);
+        }
+
+        .orb-3 {
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            transform: scale(0.95);
+            margin: 10px;
+            border-radius: 20px;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            padding: 100px 0;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(42px, 5vw, 64px);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .hero-tagline {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero-subhead {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .vsl-container {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: var(--card-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid var(--bg);
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+
+        .stats-bar {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+        }
+
+        .marquee {
+            padding: 60px 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            gap: 60px;
+        }
+
+        .marquee-item {
+            flex-shrink: 0;
+            font-size: 18px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        .section {
+            padding: 80px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(36px, 4vw, 48px);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .problem-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .problem-number {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--accent);
+            color: var(--bg);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .problem-card h3 {
+            margin: 20px 0 15px 0;
+            color: var(--text);
+        }
+
+        .treatments-section {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+        }
+
+        .accordion-content {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-content.active {
+            padding: 24px;
+            max-height: 200px;
+        }
+
+        .sidebar-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .big-stat {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .stars {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .photo-placeholder {
+            aspect-ratio: 1;
+            background: var(--card-bg);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: var(--accent);
+            position: relative;
+        }
+
+        .photo-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .quote {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 24px;
+            color: var(--accent);
+            margin: 30px 0;
+        }
+
+        .cta-block {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .guarantee-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .guarantee-item {
+            text-align: center;
+        }
+
+        .guarantee-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: var(--accent);
+            display: block;
+        }
+
+        .guarantee-badge {
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 12px 24px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 30px 0;
+        }
+
+        .faq-question {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+        }
+
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 60px 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .footer h3 {
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .rv {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .rv.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content,
+            .treatments-section,
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+
+            .guarantee-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#" class="nav-logo">Ambrosia Clinic</a>
+            <ul class="nav-links">
+                <li><a href="#treatments">Treatments</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Results</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="nav-cta">Book a Call</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text rv">
+                    <div class="badge">
+                        <div class="pulse-dot"></div>
+                        Award-Winning Aesthetic Practice
+                    </div>
+                    <h1>Your Clinical Excellence Deserves A Pipeline That Matches</h1>
+                    <p class="hero-tagline">Stop losing qualified consultations to inconsistent marketing</p>
+                    <p class="hero-subhead">You're already the #1 plastic surgery clinic in Hyderabad. Now let's make sure every person seeking aesthetic transformation finds you first.</p>
+                    <div class="hero-ctas">
+                        <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn btn-primary">Get 40-60 Consultations Monthly</a>
+                        <a href="#treatments" class="btn btn-secondary">See Our Process</a>
+                    </div>
+                </div>
+                <div class="vsl-container rv">
+                    <div class="play-button"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid rv">
+                <div class="stat-item">
+                    <h3>22+</h3>
+                    <p>Years Excellence</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10,000+</h3>
+                    <p>Transformations</p>
+                </div>
+                <div class="stat-item">
+                    <h3>99%</h3>
+                    <p>Patient Satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2023</h3>
+                    <p>Ranked #1 Clinic</p>
+                </div>
+                <div class="stat-item">
+                    <h3>3D</h3>
+                    <p>Simulation Technology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="marquee">
+        <div class="marquee-content">
+            <div class="marquee-item">Facelift Surgery</div>
+            <div class="marquee-item">VASER Liposculpture</div>
+            <div class="marquee-item">Hair Transplant</div>
+            <div class="marquee-item">Male Breast Reduction</div>
+            <div class="marquee-item">Botox & Fillers</div>
+            <div class="marquee-item">Thread Lift</div>
+            <div class="marquee-item">PRP Therapy</div>
+            <div class="marquee-item">Acne Scar Treatment</div>
+            <div class="marquee-item">Laser Tattoo Removal</div>
+            <div class="marquee-item">RF Skin Tightening</div>
+            <div class="marquee-item">Microneedling</div>
+            <div class="marquee-item">3D Skin Simulation</div>
+        </div>
+    </section>
+
+    <section class="section" id="problem">
+        <div class="container">
+            <h2 class="rv">The Patient Pipeline Gaps Holding Back Elite Practices</h2>
+            <div class="problem-grid">
+                <div class="problem-card rv">
+                    <div class="problem-number">1</div>
+                    <h3>Inconsistent Lead Generation</h3>
+                    <p>Feast or famine cycles where consultation bookings fluctuate unpredictably, making capacity planning impossible despite having the skills patients desperately need.</p>
+                </div>
+                <div class="problem-card rv">
+                    <div class="problem-number">2</div>
+                    <h3>Generic Marketing Approach</h3>
+                    <p>One-size-fits-all campaigns that fail to communicate your specialized expertise in procedures like VASER liposculpture or advanced facial reconstruction techniques.</p>
+                </div>
+                <div class="problem-card rv">
+                    <div class="problem-number">3</div>
+                    <h3>Unqualified Consultation Requests</h3>
+                    <p>Time wasted on price shoppers and unrealistic expectations instead of serious candidates who understand the value of premium aesthetic outcomes.</p>
+                </div>
+                <div class="problem-card rv">
+                    <div class="problem-number">4</div>
+                    <h3>No Systematic Follow-Up</h3>
+                    <p>Potential patients slip through cracks between consultation and procedure scheduling, with no automated nurture sequence to guide their decision-making process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="treatments">
+        <div class="container">
+            <h2 class="rv">Our Patient Pipeline Development Process</h2>
+            <div class="treatments-section">
+                <div class="accordion rv">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Specialized Lead Magnets</h3>
+                            <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Create procedure-specific guides, recovery timelines, and before/after galleries that attract patients already researching your specialty treatments like facial rejuvenation or body contouring.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Pre-Qualified Consultation Funnel</h3>
+                            <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Multi-step booking process that screens for budget, timeline, and procedure readiness before they reach your calendar, ensuring every consultation is with a serious candidate.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Authority-Building Content</h3>
+                            <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Position your 22+ years of experience and award-winning results through educational content that builds trust before the first consultation call.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Automated Nurture Sequences</h3>
+                            <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Post-consultation follow-up campaigns that address common concerns, share patient success stories, and guide decision-making for your premium procedures.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="sidebar-card rv">
+                        <div class="big-stat">92%</div>
+                        <p>of aesthetic practices see consultation bookings increase within 30 days of implementation</p>
+                    </div>
+                    <div class="sidebar-card rv">
+                        <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn btn-primary" style="width: 100%;">Schedule Strategy Call</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="testimonials">
+        <div class="container">
+            <h2 class="rv">Results From Aesthetic Practice Partners</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card rv">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"We went from 15-20 consultations per month to consistently hitting 45-50. The quality of leads improved dramatically - these are patients who understand our premium positioning and come prepared to move forward."</p>
+                    <p class="testimonial-author">Dr. Sarah Chen, Beverly Hills Aesthetic Institute</p>
+                </div>
+                <div class="testimonial-card rv">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"The specialized funnel for facial procedures has been game-changing. We're booking 3-4 facelifts monthly now versus maybe one every two months before. ROI was positive within 6 weeks."</p>
+                    <p class="testimonial-author">Dr. Michael Rodriguez, Elite Cosmetic Surgery</p>
+                </div>
+                <div class="testimonial-card rv">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Finally, a marketing approach that understands aesthetic medicine. Our consultation close rate jumped from 40% to 78% because we're attracting the right patients from day one."</p>
+                    <p class="testimonial-author">Dr. Amanda Foster, Luxury Aesthetics Center</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-section">
+                <div class="rv">
+                    <h2>Why Elite Practices Choose Our Pipeline Development</h2>
+                    <p>After helping over 200+ medical practices scale their patient acquisition, we understand that aesthetic medicine requires a completely different approach than general healthcare marketing.</p>
+                    <p class="quote">"Your patients are making emotional investments, not just medical decisions. Every touchpoint must reflect the transformation they're seeking."</p>
+                    <p>We've developed specialized systems for practices like yours - where clinical excellence meets aesthetic artistry. Our approach respects both your medical expertise and your patients' desire for life-changing results.</p>
+                    <p>Unlike generic healthcare marketers, we understand procedures like VASER liposculpture, advanced facial reconstruction, and the nuanced consultation process that leads to successful aesthetic outcomes.</p>
+                </div>
+                <div class="photo-placeholder rv">PS</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="cta-block rv">
+                <h2>Get 40-60 Qualified Consultations in 90 Days</h2>
+                <div class="guarantee-row">
+                    <div class="guarantee-item">
+                        <span class="guarantee-number">40-60</span>
+                        <p>Qualified consultations monthly</p>
+                    </div>
+                    <div class="guarantee-item">
+                        <span class="guarantee-number">24</span>
+                        <p>Hour response time</p>
+                    </div>
+                    <div class="guarantee-item">
+                        <span class="guarantee-number">90</span>
+                        <p>Day guarantee period</p>
+                    </div>
+                </div>
+                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn btn-primary" style="font-size: 18px; padding: 20px 40px;">Schedule Your Strategy Call</a>
+                <div class="guarantee-badge">40–60 qualified consultations in 90 days or full refund</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="faq">
+        <div class="container">
+            <h2 class="rv">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item rv">
+                    <div class="faq-question">
+                        How quickly can I expect to see an increase in consultation bookings?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Most aesthetic practices see initial results within 2-3 weeks, with consistent 40-60 monthly consultations achieved by week 6-8. We start with immediate improvements to your existing consultation process while building the long-term pipeline systems.
+                    </div>
+                </div>
+                <div class="faq-item rv">
+                    <div class="faq-question">
+                        Will these leads understand the investment required for premium procedures?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. Our pre-qualification process includes budget awareness and procedure-specific education. Prospects who book consultations understand they're investing
