@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William Binegar, MD - Advanced Pain Management Solutions | Boise, Idaho</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0c0c0e;
+            --accent: #4a90e2;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #707070;
+        }
+
+        body {
+            font-family: 'Geist', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.1) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: pulse 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+            50% { transform: scale(1.1) rotate(180deg); opacity: 0.5; }
+        }
+
+        .rv {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .rv.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: rgba(12, 12, 14, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 40px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: rgba(74, 144, 226, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 40px 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .hero .tagline {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .vsl-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%);
+            border: 2px solid rgba(74, 144, 226, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .vsl-placeholder:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            animation: pulse-play 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-play {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border: 2px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .stats-bar {
+            padding: 60px 40px;
+            background: rgba(74, 144, 226, 0.05);
+            border-top: 1px solid rgba(74, 144, 226, 0.1);
+            border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .marquee {
+            padding: 40px 0;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            z-index: 2;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: scroll 30s linear infinite;
+        }
+
+        .marquee-item {
+            flex-shrink: 0;
+            padding: 0 40px;
+            color: var(--text-secondary);
+            font-size: 18px;
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .section {
+            padding: 100px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--text-primary);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(74, 144, 226, 0.3);
+        }
+
+        .problem-number {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .problem-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        .treatments {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .accordion-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: rgba(74, 144, 226, 0.05);
+        }
+
+        .accordion-header h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.3rem;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+        }
+
+        .accordion-content div {
+            padding: 0 25px 25px;
+            color: var(--text-secondary);
+        }
+
+        .sticky-sidebar {
+            position: sticky;
+            top: 120px;
+        }
+
+        .stat-card, .cta-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%);
+            border-color: rgba(74, 144, 226, 0.3);
+            text-align: center;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(74, 144, 226, 0.3);
+        }
+
+        .stars {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 18px;
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .quote {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 3px solid var(--accent);
+            background: rgba(74, 144, 226, 0.05);
+        }
+
+        .photo-placeholder {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.2) 0%, rgba(74, 144, 226, 0.1) 100%);
+            border: 3px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            box-shadow: 0 0 50px rgba(74, 144, 226, 0.3);
+            margin: 0 auto;
+        }
+
+        .cta-block {
+            background: rgba(74, 144, 226, 0.05);
+            border-top: 1px solid rgba(74, 144, 226, 0.1);
+            border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+            text-align: center;
+        }
+
+        .guarantee-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .guarantee-item {
+            text-align: center;
+        }
+
+        .guarantee-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .guarantee-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .guarantee-badge {
+            background: rgba(74, 144, 226, 0.1);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 20px 30px;
+            margin-top: 30px;
+            display: inline-block;
+        }
+
+        .guarantee-badge h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-family: 'Instrument Serif', serif;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(74, 144, 226, 0.05);
+        }
+
+        .faq-question h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.2rem;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer div {
+            padding: 0 25px 25px;
+            color: var(--text-secondary);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px 30px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-content h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .footer-content p {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .treatments, .about {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .guarantee-row {
+                gap: 30px;
+            }
+
+            .sticky-sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="nav-logo">Pain Care Boise</div>
+            <ul class="nav-links">
+                <li><a href="#treatments">Treatments</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="nav-cta">Book a Call</a>
+        </div>
+    </nav>
+
+    <section class="hero rv">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="pulse-dot"></div>
+                Advanced Pain Management Solutions
+            </div>
+            <h1>Your Expertise Deserves a Full Waiting Room</h1>
+            <p class="tagline">From empty appointments to booked-solid schedule</p>
+            <p class="subtitle">You've mastered spinal cord stimulation, regenerative medicine, and complex interventional procedures. But world-class clinical skills shouldn't mean struggling to fill your practice.</p>
+            
+            <div class="vsl-placeholder">
+                <div class="play-button">▶</div>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn-primary">Get 40-60 Consultations in 90 Days</a>
+                <a href="#treatments" class="btn-secondary">See Our Process</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-bar rv">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>15+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>20+</h3>
+                <p>Advanced Procedures</p>
+            </div>
+            <div class="stat-item">
+                <h3>1000+</h3>
+                <p>Patients Treated</p>
+            </div>
+            <div class="stat-item">
+                <h3>95%</h3>
+                <p>Patient Satisfaction</p>
+            </div>
+            <div class="stat-item">
+                <h3>208-342-8200</h3>
+                <p>Direct Line</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee rv">
+        <div class="marquee-content">
+            <div class="marquee-item">Spinal Cord Stimulation</div>
+            <div class="marquee-item">Regenerative Medicine</div>
+            <div class="marquee-item">Vertebroplasty</div>
+            <div class="marquee-item">Stem Cell Therapy</div>
+            <div class="marquee-item">Radiofrequency Ablation</div>
+            <div class="marquee-item">PRP Injections</div>
+            <div class="marquee-item">Epidural Steroid Injections</div>
+            <div class="marquee-item">Facet Joint Injections</div>
+            <div class="marquee-item">Spinal Cord Stimulation</div>
+            <div class="marquee-item">Regenerative Medicine</div>
+            <div class="marquee-item">Vertebroplasty</div>
+            <div class="marquee-item">Stem Cell Therapy</div>
+            <div class="marquee-item">Radiofrequency Ablation</div>
+            <div class="marquee-item">PRP Injections</div>
+            <div class="marquee-item">Epidural Steroid Injections</div>
+            <div class="marquee-item">Facet Joint Injections</div>
+        </div>
+    </div>
+
+    <section class="section rv" id="problem">
+        <div class="section-container">
+            <h2>The Hidden Crisis in Pain Management</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-number">1</div>
+                    <h3>Patient Acquisition Gap</h3>
+                    <p>Your advanced training in complex procedures like spinal cord stimulation and regenerative medicine attracts few patients because they don't know these breakthrough treatments exist or how to find you.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">2</div>
+                    <h3>Referral Dependency</h3>
+                    <p>Waiting for primary care referrals limits your growth potential. Many patients suffering from chronic pain would self-refer if they understood your specialized approach to interventional treatments.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">3</div>
+                    <h3>Invisible Expertise</h3>
+                    <p>Patients searching for pain relief online find generic information instead of your specific expertise in procedures like stellate ganglion blocks, superior hypogastric plexus blocks, and minimally invasive spine treatments.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">4</div>
+                    <h3>Undervalued Innovation</h3>
+                    <p>Your investment in cutting-edge treatments like MILD procedure, peripheral nerve stimulation, and ultrasound-guided injections generates minimal ROI because qualified patients can't find or understand these advanced options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section rv" id="treatments">
+        <div class="section-container">
+            <h2>Advanced Solutions for Complex Pain</h2>
+            <div class="treatments">
+                <div class="accordion-container">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Regenerative Medicine & Biologics</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content">
+                            <div>
+                                <p>Cutting-edge stem cell therapy and platelet-rich plasma (PRP) treatments that harness your body's natural healing mechanisms. These advanced biologics target the root cause of pain while promoting tissue regeneration and long-term recovery.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Advanced Spinal Interventions</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
+                        <div class="accordion-content">
+                            <div>
+                                <p>Comprehensive spinal treatments including spinal cord stimulation, vertebroplasty, kyphoplasty, and MILD procedure. From targeted epidural injections to complex nerve blocks, we address pain at its source with precision-guided interventions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Precision Nerve Procedures</h3>
+                            <div class="accordion-icon">▼</div>
+                        </div>
