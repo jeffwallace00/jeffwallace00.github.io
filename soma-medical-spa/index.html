@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transform Your Practice with Patient Acquisition That Actually Works</title>
+    <title>Dr. Julieta Moran - Soma Medical Spa | Physician-Directed Aesthetics in Glendale</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -13,24 +13,16 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-        :root {
-            --accent: #c9a84c;
-            --accent-rgb: 201, 168, 76;
-            --bg: #0c0c0e;
-            --text: #ffffff;
-            --text-muted: #a8a8b3;
-            --border: #1a1a1f;
-        }
-
+        
         body {
-            background: var(--bg);
-            color: var(--text);
             font-family: 'Geist', sans-serif;
+            background-color: #0c0c0e;
+            color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
-
+        
         body::before {
             content: '';
             position: fixed;
@@ -38,690 +30,813 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9Im5vaXNlIj4KICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJ0dXJidWxlbmNlIiBiYXNlRnJlcXVlbmN5PSIwLjkiIG51bU9jdGF2ZXM9IjQiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz4KICAgICAgPGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuMDIiLz4KICA8L3N2Zz4K') repeat;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 1;
         }
-
+        
         .orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(40px);
             pointer-events: none;
             z-index: 2;
-        }
-
-        .orb-1 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.15) 0%, transparent 70%);
-            top: -150px;
-            right: -150px;
             animation: float 8s ease-in-out infinite;
         }
-
+        
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+        }
+        
         .orb-2 {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.1) 0%, transparent 70%);
-            bottom: -100px;
-            left: -100px;
-            animation: float 6s ease-in-out infinite reverse;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -4s;
         }
-
+        
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -2s;
+        }
+        
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.05); }
         }
-
-        .rv {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
-
-        .rv.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* NAV */
+        
         .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
+            z-index: 100;
             background: rgba(12, 12, 14, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            transition: padding 0.3s ease;
-            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
-
-        .nav.scrolled {
-            padding: 15px 0;
-        }
-
+        
         .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
-
+        
+        .nav.scrolled .nav-container {
+            padding: 15px 20px;
+        }
+        
         .nav-logo {
             font-family: 'Instrument Serif', serif;
             font-size: 24px;
             font-weight: 400;
-            color: var(--text);
+            color: #ffffff;
             text-decoration: none;
         }
-
+        
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 40px;
+            color: #ffffff;
         }
-
+        
         .nav-links a {
-            color: var(--text-muted);
+            color: #e0e0e0;
             text-decoration: none;
             font-size: 14px;
             font-weight: 400;
             transition: color 0.3s ease;
         }
-
+        
         .nav-links a:hover {
-            color: var(--text);
+            color: #c9a84c;
         }
-
+        
         .nav-cta {
-            background: var(--accent);
-            color: var(--bg);
+            background: linear-gradient(135deg, #c9a84c 0%, #b8973d 100%);
+            color: #000000;
             padding: 12px 24px;
             border-radius: 25px;
             text-decoration: none;
-            font-size: 14px;
             font-weight: 500;
+            font-size: 14px;
             transition: all 0.3s ease;
         }
-
+        
         .nav-cta:hover {
-            background: rgba(var(--accent-rgb), 0.9);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(201, 168, 76, 0.3);
         }
-
-        /* HERO */
+        
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            padding: 140px 0 100px;
+            text-align: center;
             position: relative;
-            z-index: 10;
-            padding: 120px 0 80px;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .hero-badge {
+        
+        .badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(var(--accent-rgb), 0.1);
-            border: 1px solid rgba(var(--accent-rgb), 0.2);
-            color: var(--accent);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 8px 20px;
+            border-radius: 25px;
             margin-bottom: 30px;
+            font-size: 14px;
+            color: #c9a84c;
         }
-
+        
         .pulse-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
+            width: 8px;
+            height: 8px;
+            background: #c9a84c;
             border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
         }
-
+        
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+            0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(201, 168, 76, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
         }
-
-        .hero-headline {
+        
+        .hero h1 {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(48px, 8vw, 86px);
-            font-weight: 400;
+            font-size: clamp(48px, 6vw, 80px);
             line-height: 1.1;
             margin-bottom: 20px;
+            color: #ffffff;
         }
-
-        .hero-tagline {
+        
+        .hero .tagline {
             font-family: 'Instrument Serif', serif;
             font-style: italic;
-            font-size: clamp(20px, 3vw, 28px);
-            color: var(--accent);
-            margin-bottom: 25px;
+            font-size: 24px;
+            color: #c9a84c;
+            margin-bottom: 30px;
         }
-
-        .hero-subhead {
-            font-size: 18px;
-            color: var(--text-muted);
+        
+        .hero .subhead {
+            font-size: 20px;
+            color: #e0e0e0;
             max-width: 600px;
-            margin-bottom: 40px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
         }
-
+        
         .vsl-container {
+            margin: 50px 0;
             position: relative;
-            background: var(--border);
-            border-radius: 12px;
-            aspect-ratio: 16/9;
+        }
+        
+        .vsl-placeholder {
+            width: 100%;
             max-width: 600px;
-            margin: 40px 0;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border-radius: 20px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(201, 168, 76, 0.2);
         }
-
+        
         .play-button {
             width: 80px;
             height: 80px;
-            background: var(--accent);
+            background: linear-gradient(135deg, #c9a84c 0%, #b8973d 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            animation: pulse-play 3s ease-in-out infinite;
+            animation: pulse-play 3s infinite;
         }
-
-        .play-button:hover {
-            transform: scale(1.1);
-        }
-
+        
         .play-button::after {
             content: '';
             width: 0;
             height: 0;
-            border-left: 20px solid var(--bg);
+            border-left: 20px solid #000000;
             border-top: 12px solid transparent;
             border-bottom: 12px solid transparent;
             margin-left: 4px;
         }
-
+        
         @keyframes pulse-play {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.7); }
-            50% { box-shadow: 0 0 0 15px rgba(var(--accent-rgb), 0); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(201, 168, 76, 0); }
         }
-
-        .hero-ctas {
+        
+        .cta-buttons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
+            justify-content: center;
             flex-wrap: wrap;
         }
-
-        .btn {
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #c9a84c 0%, #b8973d 100%);
+            color: #000000;
             padding: 16px 32px;
-            border-radius: 8px;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 16px;
             transition: all 0.3s ease;
-            display: inline-block;
             border: none;
             cursor: pointer;
         }
-
-        .btn-primary {
-            background: var(--accent);
-            color: var(--bg);
-        }
-
+        
         .btn-primary:hover {
-            background: rgba(var(--accent-rgb), 0.9);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(201, 168, 76, 0.4);
         }
-
+        
         .btn-secondary {
             background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border);
+            color: #ffffff;
+            padding: 16px 32px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
         }
-
+        
         .btn-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+            border-color: #c9a84c;
+            color: #c9a84c;
+            transform: translateY(-3px);
         }
-
-        /* STATS BAR */
-        .stats {
-            background: rgba(var(--accent-rgb), 0.05);
-            border: 1px solid rgba(var(--accent-rgb), 0.1);
+        
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding: 60px 0;
-            margin: 80px 0;
         }
-
+        
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             text-align: center;
         }
-
-        .stat-item h3 {
+        
+        .stat {
+            opacity: 1;
+            transform: none;
+        }
+        
+        .stat-number {
             font-family: 'Instrument Serif', serif;
             font-size: 48px;
-            color: var(--accent);
-            margin-bottom: 5px;
+            color: #c9a84c;
+            display: block;
+            margin-bottom: 10px;
         }
-
-        .stat-item p {
-            color: var(--text-muted);
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        
+        .stat-label {
+            color: #e0e0e0;
+            font-size: 16px;
+            font-weight: 400;
         }
-
-        /* MARQUEE */
-        .marquee-section {
-            overflow: hidden;
-            padding: 40px 0;
-            margin: 80px 0;
-        }
-
+        
         .marquee {
+            padding: 80px 0;
+            overflow: hidden;
+        }
+        
+        .marquee-content {
             display: flex;
             animation: scroll 30s linear infinite;
-        }
-
-        .marquee-item {
-            flex-shrink: 0;
-            padding: 0 40px;
-            font-size: 18px;
-            color: var(--text-muted);
+            gap: 60px;
             white-space: nowrap;
         }
-
+        
+        .marquee-item {
+            font-size: 18px;
+            color: #e0e0e0;
+            font-weight: 400;
+        }
+        
         @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
-
-        /* PROBLEM */
-        .section {
-            padding: 120px 0;
+        
+        .problem {
+            padding: 100px 0;
         }
-
+        
         .section-header {
             text-align: center;
             margin-bottom: 80px;
         }
-
+        
         .section-title {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(36px, 5vw, 56px);
+            font-size: clamp(40px, 5vw, 60px);
             margin-bottom: 20px;
+            color: #ffffff;
         }
-
+        
         .section-subtitle {
-            font-size: 18px;
-            color: var(--text-muted);
+            font-size: 20px;
+            color: #e0e0e0;
             max-width: 600px;
             margin: 0 auto;
         }
-
+        
         .problem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
-
+        
         .problem-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
             position: relative;
+            opacity: 1;
+            transform: none;
+            transition: all 0.3s ease;
         }
-
+        
+        .problem-card:hover {
+            border-color: rgba(201, 168, 76, 0.3);
+            background: rgba(201, 168, 76, 0.05);
+        }
+        
         .problem-number {
-            position: absolute;
-            top: -15px;
-            left: 30px;
-            width: 30px;
-            height: 30px;
-            background: var(--accent);
-            color: var(--bg);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #c9a84c 0%, #b8973d 100%);
+            color: #000000;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 14px;
-        }
-
-        .problem-card h3 {
-            font-family: 'Instrument Serif', serif;
             font-size: 24px;
-            margin-bottom: 15px;
-            margin-top: 15px;
+            margin: 0 auto 20px;
         }
-
-        /* TREATMENTS */
+        
+        .problem-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .problem-card p {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
         .treatments {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .treatments-container {
             display: grid;
-            grid-template-columns: 1fr 300px;
+            grid-template-columns: 2fr 1fr;
             gap: 60px;
             align-items: start;
         }
-
+        
+        .accordion {
+            opacity: 1;
+            transform: none;
+        }
+        
         .accordion-item {
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
             margin-bottom: 15px;
             overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
         }
-
+        
         .accordion-header {
             padding: 25px 30px;
-            background: rgba(255, 255, 255, 0.02);
             cursor: pointer;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             transition: all 0.3s ease;
         }
-
+        
         .accordion-header:hover {
-            background: rgba(var(--accent-rgb), 0.05);
+            background: rgba(201, 168, 76, 0.05);
         }
-
+        
         .accordion-header h3 {
-            font-family: 'Instrument Serif', serif;
             font-size: 20px;
-            margin: 0;
+            color: #ffffff;
+            font-weight: 600;
         }
-
+        
         .accordion-icon {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
+            background: #c9a84c;
             border-radius: 50%;
-            border: 1px solid var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent);
-            font-size: 12px;
-            transition: all 0.3s ease;
+            color: #000000;
+            font-weight: 600;
+            transition: transform 0.3s ease;
         }
-
+        
         .accordion-content {
-            padding: 0 30px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
+            padding: 0 30px 25px;
+            color: #e0e0e0;
+            line-height: 1.6;
+            display: none;
         }
-
+        
         .accordion-item.active .accordion-content {
-            padding: 25px 30px;
-            max-height: 200px;
+            display: block;
         }
-
+        
         .accordion-item.active .accordion-icon {
-            background: var(--accent);
-            color: var(--bg);
             transform: rotate(45deg);
         }
-
-        .treatments-sidebar {
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
             position: sticky;
             top: 120px;
         }
-
+        
         .stat-card {
-            background: rgba(var(--accent-rgb), 0.1);
-            border: 1px solid rgba(var(--accent-rgb), 0.2);
-            border-radius: 12px;
-            padding: 30px;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
             text-align: center;
-            margin-bottom: 20px;
+            opacity: 1;
+            transform: none;
         }
-
-        .stat-card h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 48px;
-            color: var(--accent);
-            margin-bottom: 10px;
+        
+        .stat-card .stat-number {
+            font-size: 56px;
+            margin-bottom: 15px;
         }
-
+        
+        .stat-card .stat-label {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
         .cta-card {
-            background: var(--border);
-            border-radius: 12px;
-            padding: 30px;
+            background: rgba(12, 12, 14, 0.8);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
             text-align: center;
+            opacity: 1;
+            transform: none;
         }
-
-        /* TESTIMONIALS */
+        
+        .cta-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .cta-card p {
+            color: #e0e0e0;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .testimonials {
+            padding: 100px 0;
+        }
+        
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
-
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 30px;
+        
+        .testimonial {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            opacity: 1;
+            transform: none;
         }
-
+        
         .stars {
-            color: var(--accent);
+            display: flex;
+            gap: 5px;
             margin-bottom: 20px;
-            font-size: 18px;
         }
-
+        
+        .star {
+            color: #c9a84c;
+            font-size: 20px;
+        }
+        
         .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
+            font-size: 16px;
             line-height: 1.6;
+            margin-bottom: 25px;
+            color: #e0e0e0;
+            font-style: italic;
         }
-
+        
         .testimonial-author {
-            font-weight: 500;
-            color: var(--accent);
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 16px;
         }
-
-        /* ABOUT */
+        
         .about {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .about-container {
             display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 60px;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
             align-items: center;
         }
-
-        .about-text h3 {
+        
+        .about-content {
+            opacity: 1;
+            transform: none;
+        }
+        
+        .about-content h2 {
             font-family: 'Instrument Serif', serif;
-            font-size: 32px;
-            margin-bottom: 20px;
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: #ffffff;
         }
-
-        .about-quote {
+        
+        .about-content p {
+            color: #e0e0e0;
+            line-height: 1.8;
             font-size: 18px;
-            font-style: italic;
-            color: var(--text-muted);
-            margin: 30px 0;
-            padding-left: 20px;
-            border-left: 3px solid var(--accent);
+            margin-bottom: 25px;
         }
-
+        
+        .quote {
+            background: rgba(201, 168, 76, 0.1);
+            border-left: 4px solid #c9a84c;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .quote p {
+            color: #ffffff;
+            font-style: italic;
+            font-size: 20px;
+            margin: 0;
+        }
+        
         .photo-placeholder {
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
-            background: rgba(var(--accent-rgb), 0.1);
-            border: 2px solid var(--accent);
+            background: linear-gradient(135deg, #c9a84c 0%, #b8973d 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Instrument Serif', serif;
-            font-size: 48px;
-            color: var(--accent);
             margin: 0 auto;
             position: relative;
+            opacity: 1;
+            transform: none;
         }
-
+        
         .photo-placeholder::before {
             content: '';
             position: absolute;
-            inset: -10px;
+            inset: -3px;
             border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent, var(--accent), transparent);
-            animation: spin 4s linear infinite;
+            background: linear-gradient(135deg, #c9a84c, #b8973d);
             z-index: -1;
+            animation: glow 3s ease-in-out infinite alternate;
         }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(201, 168, 76, 0.6); }
         }
-
-        /* CTA BLOCK */
+        
+        .photo-initials {
+            font-size: 72px;
+            font-weight: 600;
+            color: #000000;
+            font-family: 'Instrument Serif', serif;
+        }
+        
         .cta-block {
-            background: rgba(var(--accent-rgb), 0.05);
-            border: 1px solid rgba(var(--accent-rgb), 0.1);
-            border-radius: 20px;
-            padding: 80px 40px;
+            padding: 100px 0;
             text-align: center;
         }
-
+        
         .guarantee-row {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 40px;
-            margin: 40px 0;
+            margin-bottom: 50px;
             flex-wrap: wrap;
         }
-
+        
         .guarantee-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            opacity: 1;
+            transform: none;
         }
-
+        
         .guarantee-number {
             font-family: 'Instrument Serif', serif;
             font-size: 48px;
-            color: var(--accent);
+            color: #c9a84c;
+            margin-bottom: 10px;
         }
-
+        
+        .guarantee-text {
+            color: #e0e0e0;
+            font-size: 16px;
+        }
+        
         .guarantee-badge {
-            background: var(--accent);
-            color: var(--bg);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 12px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 2px solid #c9a84c;
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-top: 40px;
+            display: inline-block;
+            opacity: 1;
+            transform: none;
+        }
+        
+        .guarantee-badge-text {
+            color: #c9a84c;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 20px;
+            font-size: 16px;
         }
-
-        /* FAQ */
-        .faq-item {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin-bottom: 15px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 25px 30px;
+        
+        .faq {
+            padding: 100px 0;
             background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 1;
+            transform: none;
+        }
+        
+        .faq-question {
+            padding: 30px 0;
             cursor: pointer;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            transition: all 0.3s ease;
+            align-items: center;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
         }
-
-        .faq-question:hover {
-            background: rgba(var(--accent-rgb), 0.05);
+        
+        .faq-icon {
+            color: #c9a84c;
+            font-size: 24px;
+            transition: transform 0.3s ease;
         }
-
+        
         .faq-answer {
-            padding: 0 30px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
+            padding-bottom: 30px;
+            color: #e0e0e0;
+            line-height: 1.6;
+            display: none;
         }
-
+        
         .faq-item.active .faq-answer {
-            padding: 25px 30px;
-            max-height: 200px;
+            display: block;
         }
-
-        /* FOOTER */
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
         .footer {
-            border-top: 1px solid var(--border);
-            padding: 60px 0;
+            padding: 60px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
             text-align: center;
         }
-
+        
+        .footer h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
         .footer-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            color: #e0e0e0;
+            line-height: 1.8;
+            font-size: 16px;
         }
-
-        .footer-info div {
-            color: var(--text-muted);
+        
+        .footer-info p {
+            margin-bottom: 10px;
         }
-
-        .footer-info strong {
-            color: var(--text);
-            display: block;
-            margin-bottom: 5px;
+        
+        .reveal {
+            opacity: 1;
+            transform: none;
+            transition: all 0.8s ease;
         }
-
-        /* MOBILE */
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-
-            .treatments,
-            .about {
+            
+            .treatments-container,
+            .about-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-
-            .treatments-sidebar {
-                position: static;
+            
+            .sidebar {
+                position: relative;
+                top: 0;
             }
-
+            
             .guarantee-row {
-                gap: 20px;
-            }
-
-            .hero-ctas {
                 flex-direction: column;
+                gap: 30px;
             }
-
-            .btn {
-                text-align: center;
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -729,153 +844,73 @@
 <body>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
-
-    <!-- NAV -->
+    <div class="orb orb-3"></div>
+    
     <nav class="nav" id="nav">
         <div class="nav-container">
             <a href="#" class="nav-logo">Soma Medical Spa</a>
             <div class="nav-links">
-                <a href="#treatments">Treatments</a>
                 <a href="#about">About</a>
+                <a href="#treatments">Services</a>
                 <a href="#testimonials">Reviews</a>
-                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
             </div>
             <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="nav-cta">Book a Call</a>
         </div>
     </nav>
-
-    <!-- HERO -->
+    
     <section class="hero">
         <div class="container">
-            <div class="rv">
-                <div class="hero-badge">
-                    <span class="pulse-dot"></span>
-                    Medical Spa Patient Acquisition
-                </div>
-                <h1 class="hero-headline">World-Class Aesthetics Expertise Deserves a Full Patient Calendar</h1>
-                <p class="hero-tagline">Bridge the gap between your clinical mastery and consistent new patient flow</p>
-                <p class="hero-subhead">You've perfected SylfirmX treatments and advanced injectables. Now let's fill your schedule with qualified patients who value premium aesthetic care in Glendale.</p>
-                
-                <div class="vsl-container">
+            <div class="badge reveal">
+                <div class="pulse-dot"></div>
+                Physician-Directed Medical Aesthetics
+            </div>
+            <h1 class="reveal">World-Class Medical Expertise, Empty Appointment Books</h1>
+            <p class="tagline reveal">Bridge the gap between your clinical mastery and patient acquisition</p>
+            <p class="subhead reveal">You've mastered advanced aesthetic treatments like SylfirmX and PRP therapy. Now let's fill your schedule with qualified patients who value your expertise.</p>
+            
+            <div class="vsl-container reveal">
+                <div class="vsl-placeholder">
                     <div class="play-button"></div>
                 </div>
-
-                <div class="hero-ctas">
-                    <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn btn-primary">Get 40-60 New Consultations</a>
-                    <a href="#treatments" class="btn btn-secondary">See How It Works</a>
-                </div>
+            </div>
+            
+            <div class="cta-buttons reveal">
+                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn-primary">Get 40-60 New Patients</a>
+                <a href="#about" class="btn-secondary">Learn More</a>
             </div>
         </div>
     </section>
-
-    <!-- STATS BAR -->
-    <section class="stats rv">
+    
+    <section class="stats-bar">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>15+</h3>
-                    <p>Advanced Treatments</p>
+                <div class="stat reveal">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Years Medical Experience</span>
                 </div>
-                <div class="stat-item">
-                    <h3>500+</h3>
-                    <p>Successful Procedures</p>
+                <div class="stat reveal">
+                    <span class="stat-number">2,500+</span>
+                    <span class="stat-label">Successful Treatments</span>
                 </div>
-                <div class="stat-item">
-                    <h3>12</h3>
-                    <p>Years Experience</p>
+                <div class="stat reveal">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Patient Satisfaction</span>
                 </div>
-                <div class="stat-item">
-                    <h3>98%</h3>
-                    <p>Patient Satisfaction</p>
-                </div>
-                <div class="stat-item">
-                    <h3>5★</h3>
-                    <p>Average Rating</p>
+                <div class="stat reveal">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Advanced Specialties</span>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- MARQUEE -->
-    <section class="marquee-section">
-        <div class="marquee">
-            <div class="marquee-item">SylfirmX RF Microneedling</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">PRP with Microneedling</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">IPL Skin Rejuvenation</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">Dermal Fillers & Sculptra</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">Botox & Injectables</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">HydraFacial MD</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">Chemical Peels</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">Physician-Directed Skincare</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">EZ Gel PRF</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">SylfirmX RF Microneedling</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">PRP with Microneedling</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">IPL Skin Rejuvenation</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">Dermal Fillers & Sculptra</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">Botox & Injectables</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">HydraFacial MD</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">Chemical Peels</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">Physician-Directed Skincare</div>
-            <div class="marquee-item">•</div>
-            <div class="marquee-item">EZ Gel PRF</div>
-        </div>
-    </section>
-
-    <!-- PROBLEM -->
-    <section class="section rv" id="problem">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">The Patient Acquisition Gap</h2>
-                <p class="section-subtitle">Even exceptional medical spas struggle with predictable new patient flow</p>
-            </div>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="problem-number">1</div>
-                    <h3>Feast or Famine Schedule</h3>
-                    <p>Your calendar swings between completely booked and frustratingly empty. Referrals are unpredictable, and walk-ins are rare for premium aesthetic treatments.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-number">2</div>
-                    <h3>Price-Shopping Inquiries</h3>
-                    <p>Most calls focus on cost rather than results. You're competing with discount providers instead of attracting patients who value clinical expertise.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-number">3</div>
-                    <h3>Marketing That Doesn't Convert</h3>
-                    <p>Social media posts and Google ads generate likes and clicks but not qualified consultations. Your expertise isn't translating into bookings.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-number">4</div>
-                    <h3>Inconsistent Revenue</h3>
-                    <p>Without predictable patient flow, it's impossible to plan growth, invest in new technologies, or provide team stability. Every month feels uncertain.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TREATMENTS -->
-    <section class="section rv" id="treatments">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Your Patient Pipeline Solution</h2>
-                <p class="section-subtitle">A systematic approach to attracting and converting qualified aesthetic patients</p>
-            </div>
-            <div class="treatments">
-                <div class="accordion">
-                    <div
+    
+    <section class="marquee">
+        <div class="marquee-content">
+            <span class="marquee-item">SylfirmX RF Microneedling</span>
+            <span class="marquee-item">PRP with Microneedling</span>
+            <span class="marquee-item">IPL Skin Rejuvenation</span>
+            <span class="marquee-item">Dermal Fillers & Sculptra</span>
+            <span class="marquee-item">Botox & Dysport</span>
+            <span class="marquee-item">HydraFacial MD</span>
+            <span class="marquee-
