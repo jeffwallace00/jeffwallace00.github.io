@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ali Izadpanah - Station-L Medispa</title>
+    <title>Station-L Medispa - Elite Aesthetic Medicine in Westmount</title>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -12,22 +12,12 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --accent: #d4af37;
-            --accent-dim: #b8962e;
-            --bg: #0c0c0e;
-            --text: #ffffff;
-            --text-dim: #a0a0a0;
-            --border: #2a2a2a;
-        }
-
         body {
-            background: var(--bg);
-            color: var(--text);
             font-family: 'Geist', sans-serif;
-            line-height: 1.6;
+            background-color: #0c0c0e;
+            color: #ffffff;
             overflow-x: hidden;
-            position: relative;
+            line-height: 1.6;
         }
 
         body::before {
@@ -37,8 +27,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 1;
         }
@@ -46,104 +35,112 @@
         .orb {
             position: fixed;
             border-radius: 50%;
-            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-            filter: blur(80px);
-            opacity: 0.1;
+            filter: blur(60px);
             pointer-events: none;
-            z-index: 2;
-            animation: float 20s infinite ease-in-out;
+            z-index: 0;
+            animation: float 20s ease-in-out infinite;
         }
 
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            top: 10%;
-            left: 80%;
-        }
-
-        .orb-2 {
+        .orb:nth-child(1) {
             width: 300px;
             height: 300px;
-            top: 60%;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.3) 0%, transparent 70%);
+            top: 20%;
             left: 10%;
-            animation-delay: -10s;
+            animation-delay: 0s;
         }
 
-        .orb-3 {
+        .orb:nth-child(2) {
             width: 200px;
             height: 200px;
-            top: 40%;
-            left: 70%;
-            animation-delay: -5s;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.2) 0%, transparent 70%);
+            top: 60%;
+            right: 15%;
+            animation-delay: -7s;
+        }
+
+        .orb:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -14s;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -20px) scale(1.1); }
+            50% { transform: translate(-10px, 10px) scale(0.9); }
+            75% { transform: translate(-20px, -10px) scale(1.05); }
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 3;
+        .scroll-reveal {
+            opacity: 1;
+            transform: none;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-reveal.animate {
+            opacity: 1;
+            transform: translateY(-10px);
         }
 
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: rgba(12, 12, 14, 0.8);
+            width: 100%;
+            background: rgba(12, 12, 14, 0.9);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 20px 0;
             transition: all 0.3s ease;
         }
 
-        nav.scrolled {
-            padding: 10px 0;
-            background: rgba(12, 12, 14, 0.95);
+        nav.shrink {
+            padding: 15px 0;
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
         }
 
         .logo {
             font-family: 'Instrument Serif', serif;
             font-size: 24px;
             font-weight: 400;
-            color: var(--accent);
+            color: #ffffff;
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
             gap: 40px;
+            list-style: none;
         }
 
         .nav-links a {
-            color: var(--text);
+            color: #ffffff;
             text-decoration: none;
             font-weight: 400;
             transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: #c9a84c;
         }
 
         .nav-cta {
-            background: var(--accent);
-            color: var(--bg);
+            background: linear-gradient(135deg, #c9a84c, #b8973d);
+            color: #0c0c0e;
             padding: 12px 24px;
             border-radius: 50px;
             text-decoration: none;
@@ -152,249 +149,282 @@
         }
 
         .nav-cta:hover {
-            background: var(--accent-dim);
             transform: translateY(-2px);
-        }
-
-        /* Utility Classes */
-        .rv {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .rv.visible {
-            opacity: 1;
-            transform: translateY(0);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
         }
 
         /* Hero Section */
         .hero {
-            padding: 140px 0 80px;
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 40px 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--accent);
-            padding: 8px 20px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 8px 16px;
             border-radius: 50px;
             font-size: 14px;
-            margin-bottom: 30px;
+            color: #c9a84c;
+            margin-bottom: 32px;
         }
 
         .pulse-dot {
             width: 8px;
             height: 8px;
-            background: var(--accent);
+            background: #c9a84c;
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.2); }
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .hero h1 {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(3rem, 8vw, 4.5rem);
+            font-size: clamp(48px, 6vw, 72px);
             line-height: 1.1;
-            margin-bottom: 20px;
+            color: #ffffff;
+            margin-bottom: 24px;
+            max-width: 900px;
         }
 
-        .hero .subtitle {
+        .hero-tagline {
             font-family: 'Instrument Serif', serif;
             font-style: italic;
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            color: var(--accent);
-            margin-bottom: 20px;
+            font-size: 24px;
+            color: #c9a84c;
+            margin-bottom: 32px;
         }
 
-        .hero .description {
-            font-size: 18px;
-            color: var(--text-dim);
+        .hero-subhead {
+            font-size: 20px;
+            color: #e0e0e0;
+            margin-bottom: 48px;
             max-width: 600px;
-            margin: 0 auto 40px;
+            line-height: 1.6;
         }
 
-        .vsl-placeholder {
+        .vsl-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 60px;
+            margin: 48px 0;
+            text-align: center;
             position: relative;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 2px solid var(--border);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .play-button {
             width: 80px;
             height: 80px;
-            background: var(--accent);
+            background: linear-gradient(135deg, #c9a84c, #b8973d);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0 auto 24px;
             cursor: pointer;
             transition: all 0.3s ease;
-            animation: pulse-play 3s infinite;
+            animation: pulse-play 3s ease-in-out infinite;
         }
 
-        .play-button::before {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 20px solid var(--bg);
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            margin-left: 4px;
+        .play-button:hover {
+            transform: scale(1.1);
         }
 
         @keyframes pulse-play {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(201, 168, 76, 0); }
+        }
+
+        .play-button::after {
+            content: '▶';
+            color: #0c0c0e;
+            font-size: 24px;
+            margin-left: 4px;
+        }
+
+        .vsl-text {
+            color: #ffffff;
+            font-size: 18px;
         }
 
         .hero-ctas {
             display: flex;
             gap: 20px;
-            justify-content: center;
             flex-wrap: wrap;
         }
 
-        .cta-primary {
-            background: var(--accent);
-            color: var(--bg);
+        .btn-primary {
+            background: linear-gradient(135deg, #c9a84c, #b8973d);
+            color: #0c0c0e;
             padding: 16px 32px;
-            border-radius: 50px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .cta-primary:hover {
-            background: var(--accent-dim);
+        .btn-primary:hover {
             transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
         }
 
-        .cta-secondary {
+        .btn-secondary {
             background: transparent;
-            color: var(--text);
+            color: #ffffff;
             padding: 16px 32px;
-            border: 2px solid var(--border);
-            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
         }
 
-        .cta-secondary:hover {
-            border-color: var(--accent);
-            background: rgba(212, 175, 55, 0.1);
+        .btn-secondary:hover {
+            border-color: #c9a84c;
+            color: #c9a84c;
         }
 
         /* Stats Bar */
         .stats-bar {
-            padding: 60px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            position: relative;
+            z-index: 2;
         }
 
-        .stats-grid {
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             text-align: center;
         }
 
-        .stat-item h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 10px;
+        .stat {
+            color: #ffffff;
         }
 
-        .stat-item p {
-            color: var(--text-dim);
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .stat-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: #c9a84c;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #e0e0e0;
         }
 
         /* Marquee */
         .marquee-section {
-            padding: 40px 0;
-            overflow: hidden;
-            border-bottom: 1px solid var(--border);
+            padding: 80px 0;
+            background: rgba(201, 168, 76, 0.03);
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            position: relative;
+            z-index: 2;
         }
 
-        .marquee-track {
-            display: flex;
-            width: calc(250px * 20);
-            animation: scroll-marquee 30s linear infinite;
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll-left 60s linear infinite;
+            color: #c9a84c;
+            font-size: 24px;
+            font-weight: 500;
         }
 
         .marquee-item {
-            flex-shrink: 0;
-            width: 250px;
-            text-align: center;
-            padding: 0 20px;
-            color: var(--text-dim);
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            display: inline-block;
+            padding-right: 80px;
         }
 
-        @keyframes scroll-marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        @keyframes scroll-left {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         /* Problem Section */
-        .problem {
-            padding: 80px 0;
+        .problem-section {
+            padding: 120px 40px;
+            position: relative;
+            z-index: 2;
         }
 
-        .problem h2 {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
+        .problem-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
 
-        .problems-grid {
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(36px, 5vw, 48px);
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #e0e0e0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .problem-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 32px;
         }
 
         .problem-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
             position: relative;
         }
 
         .problem-number {
             position: absolute;
-            top: -15px;
-            left: 30px;
-            background: var(--accent);
-            color: var(--bg);
-            width: 30px;
-            height: 30px;
+            top: -16px;
+            left: 32px;
+            background: #c9a84c;
+            color: #0c0c0e;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -405,498 +435,521 @@
 
         .problem-card h3 {
             font-family: 'Instrument Serif', serif;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--accent);
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 16px;
+            margin-top: 8px;
+        }
+
+        .problem-card p {
+            color: #e0e0e0;
+            line-height: 1.6;
         }
 
         /* Treatments Section */
-        .treatments {
-            padding: 80px 0;
-            background: rgba(255, 255, 255, 0.01);
+        .treatments-section {
+            padding: 120px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            z-index: 2;
         }
 
         .treatments-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 300px;
+            grid-template-columns: 2fr 1fr;
             gap: 60px;
             align-items: start;
         }
 
-        .treatments h2 {
+        .treatments-left h2 {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            margin-bottom: 40px;
+            font-size: clamp(36px, 5vw, 48px);
+            color: #ffffff;
+            margin-bottom: 32px;
+        }
+
+        .accordion {
+            space-y: 16px;
         }
 
         .accordion-item {
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             overflow: hidden;
+            margin-bottom: 16px;
         }
 
         .accordion-header {
-            padding: 25px;
+            padding: 24px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 18px;
         }
 
         .accordion-header:hover {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        .accordion-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.2rem;
-            color: var(--accent);
+        .accordion-icon {
+            color: #c9a84c;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
         }
 
         .accordion-content {
-            padding: 0 25px 25px;
-            color: var(--text-dim);
-            border-top: 1px solid var(--border);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
         }
 
-        .sidebar {
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+        }
+
+        .accordion-body {
+            padding: 0 24px 24px;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .treatments-right {
             position: sticky;
             top: 120px;
         }
 
         .stat-card {
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid var(--accent);
-            padding: 30px;
-            border-radius: 20px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 16px;
+            padding: 32px;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
         }
 
-        .stat-card h3 {
+        .stat-card-number {
             font-family: 'Instrument Serif', serif;
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 10px;
+            font-size: 48px;
+            color: #c9a84c;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-card-label {
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.05));
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .cta-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+
+        .cta-card p {
+            color: #e0e0e0;
+            margin-bottom: 24px;
+            line-height: 1.6;
         }
 
         /* Testimonials */
-        .testimonials {
-            padding: 80px 0;
+        .testimonials-section {
+            padding: 120px 40px;
+            position: relative;
+            z-index: 2;
         }
 
-        .testimonials h2 {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            text-align: center;
-            margin-bottom: 60px;
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            gap: 32px;
+            margin-top: 80px;
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
         }
 
         .stars {
-            color: var(--accent);
+            color: #c9a84c;
             font-size: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 16px;
             line-height: 1.6;
+            margin-bottom: 24px;
         }
 
         .testimonial-author {
-            color: var(--text-dim);
+            color: #e0e0e0;
             font-size: 14px;
+            font-weight: 500;
         }
 
         /* About Section */
-        .about {
-            padding: 80px 0;
-            background: rgba(255, 255, 255, 0.01);
+        .about-section {
+            padding: 120px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            z-index: 2;
         }
 
         .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 60px;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
             align-items: center;
         }
 
-        .about h2 {
+        .about-text h2 {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            margin-bottom: 30px;
+            font-size: clamp(36px, 5vw, 48px);
+            color: #ffffff;
+            margin-bottom: 32px;
         }
 
-        .about-text {
+        .about-text p {
+            color: #e0e0e0;
             font-size: 18px;
             line-height: 1.7;
-            color: var(--text-dim);
+            margin-bottom: 24px;
+        }
+
+        .quote {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: #c9a84c;
+            border-left: 3px solid #c9a84c;
+            padding-left: 24px;
+            margin: 32px 0;
         }
 
         .photo-placeholder {
             width: 300px;
             height: 300px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-dim));
             border-radius: 50%;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.1));
+            border: 2px solid rgba(201, 168, 76, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Instrument Serif', serif;
-            font-size: 4rem;
-            color: var(--bg);
-            position: relative;
+            font-size: 48px;
+            color: #c9a84c;
             margin: 0 auto;
-        }
-
-        .photo-placeholder::before {
-            content: '';
-            position: absolute;
-            inset: -10px;
-            background: linear-gradient(45deg, var(--accent), transparent, var(--accent));
-            border-radius: 50%;
-            opacity: 0.3;
-            z-index: -1;
-            animation: rotate 8s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            box-shadow: 0 0 50px rgba(201, 168, 76, 0.2);
         }
 
         /* CTA Block */
         .cta-block {
-            padding: 80px 0;
+            padding: 120px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-block-container {
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
         }
 
         .guarantee-row {
             display: flex;
             justify-content: center;
-            gap: 60px;
-            margin-bottom: 40px;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 48px;
             flex-wrap: wrap;
         }
 
-        .guarantee-item {
+        .guarantee-stat {
             text-align: center;
         }
 
         .guarantee-number {
             font-family: 'Instrument Serif', serif;
-            font-size: 3rem;
-            color: var(--accent);
+            font-size: 48px;
+            color: #c9a84c;
             display: block;
-            margin-bottom: 10px;
         }
 
         .guarantee-label {
-            color: var(--text-dim);
+            color: #ffffff;
             font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-weight: 500;
         }
 
-        .cta-block .cta-primary {
-            font-size: 18px;
-            padding: 20px 40px;
-            margin-bottom: 30px;
+        .cta-block h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(36px, 5vw, 48px);
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+
+        .cta-block p {
+            color: #e0e0e0;
+            font-size: 20px;
+            margin-bottom: 48px;
+            line-height: 1.6;
         }
 
         .guarantee-badge {
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid var(--accent);
-            padding: 20px 30px;
-            border-radius: 15px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 50px;
+            padding: 12px 24px;
             display: inline-block;
-            margin-top: 20px;
-        }
-
-        .guarantee-badge strong {
-            color: var(--accent);
+            color: #c9a84c;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 32px;
         }
 
         /* FAQ */
-        .faq {
-            padding: 80px 0;
-            background: rgba(255, 255, 255, 0.01);
+        .faq-section {
+            padding: 120px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            z-index: 2;
         }
 
-        .faq h2 {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            text-align: center;
-            margin-bottom: 60px;
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .faq-item {
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 16px;
             overflow: hidden;
         }
 
         .faq-question {
-            padding: 25px;
+            padding: 24px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 16px;
         }
 
         .faq-question:hover {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .faq-answer {
-            padding: 0 25px 25px;
-            color: var(--text-dim);
-            border-top: 1px solid var(--border);
-            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer-text {
+            padding: 0 24px 24px;
+            color: #e0e0e0;
+            line-height: 1.6;
         }
 
         /* Footer */
         footer {
-            padding: 60px 0;
-            border-top: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        .footer-content h3 {
+        .footer-content {
+            margin-bottom: 32px;
+        }
+
+        .footer-name {
             font-family: 'Instrument Serif', serif;
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-bottom: 20px;
+            font-size: 32px;
+            color: #c9a84c;
+            margin-bottom: 16px;
         }
 
         .footer-info {
-            color: var(--text-dim);
+            color: #e0e0e0;
+            font-size: 16px;
             line-height: 1.8;
         }
 
-        .footer-info a {
-            color: var(--accent);
-            text-decoration: none;
+        .footer-info p {
+            margin-bottom: 8px;
+            color: #e0e0e0;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            color: #666;
+            font-size: 14px;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            
-            .treatments-container,
-            .about-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            .nav-container {
+                padding: 0 20px;
             }
 
-            .sidebar {
-                position: static;
-                order: -1;
+            .nav-links {
+                display: none;
             }
 
-            .guarantee-row {
-                flex-direction: column;
-                gap: 30px;
+            .hero {
+                padding: 100px 20px 60px;
             }
 
             .hero-ctas {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+
+            .treatments-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .treatments-right {
+                position: static;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .guarantee-row {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .problem-section,
+            .treatments-section,
+            .testimonials-section,
+            .about-section,
+            .cta-block,
+            .faq-section {
+                padding: 80px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
 
+    <!-- Navigation -->
     <nav id="nav">
         <div class="nav-container">
             <div class="logo">Station-L Medispa</div>
             <ul class="nav-links">
                 <li><a href="#treatments">Treatments</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#testimonials">Results</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
             <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="nav-cta">Book a Call</a>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-badge rv">
+        <div class="hero-content scroll-reveal">
+            <div class="hero-badge">
                 <div class="pulse-dot"></div>
-                Triple Board-Certified • Westmount
+                Triple Board-Certified Excellence
             </div>
-            <h1 class="rv">Your Expertise Deserves a Full Schedule</h1>
-            <p class="subtitle rv">Transform your aesthetic practice with patients who value premium care</p>
-            <p class="description rv">
-                You've mastered advanced procedures like PRF therapy and Halo fractional laser treatments. 
-                Now discover how to consistently fill your schedule with qualified patients who appreciate your expertise.
-            </p>
+            <h1>Your Clinical Mastery Deserves a Patient Pipeline That Matches Your Expertise</h1>
+            <p class="hero-tagline">From world-class aesthetic medicine to consistent consultation flow</p>
+            <p class="hero-subhead">Dr. Izadpanah, your advanced treatments and surgical precision have transformed countless patients—but finding qualified candidates shouldn't be the bottleneck limiting your practice growth.</p>
             
-            <div class="vsl-placeholder rv">
-                <div class="play-button" onclick="window.open('https://calendly.com/jeff-yourmarketingdept/30min', '_blank')"></div>
+            <div class="vsl-container">
+                <div class="play-button"></div>
+                <p class="vsl-text">Watch how elite medspas are filling their calendars with qualified aesthetic patients</p>
             </div>
 
-            <div class="hero-ctas rv">
-                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="cta-primary">
-                    Schedule Your Strategy Call →
-                </a>
-                <a href="#treatments" class="cta-secondary">See Our Approach</a>
+            <div class="hero-ctas">
+                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn-primary">Get 40-60 Qualified Consultations</a>
+                <a href="#treatments" class="btn-secondary">See Our Process</a>
             </div>
         </div>
     </section>
 
+    <!-- Stats Bar -->
     <section class="stats-bar">
-        <div class="container">
-            <div class="stats-grid rv">
-                <div class="stat-item">
-                    <h3>15+</h3>
-                    <p>Years Experience</p>
-                </div>
-                <div class="stat-item">
-                    <h3>300+</h3>
-                    <p>Published Articles</p>
-                </div>
-                <div class="stat-item">
-                    <h3>25</h3>
-                    <p>Advanced Procedures</p>
-                </div>
-                <div class="stat-item">
-                    <h3>98%</h3>
-                    <p>Patient Satisfaction</p>
-                </div>
-                <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p>Expert Care</p>
-                </div>
+        <div class="stats-container scroll-reveal">
+            <div class="stat">
+                <span class="stat-number">300+</span>
+                <span class="stat-label">Published Scientific Articles</span>
             </div>
-        </div>
-    </section>
-
-    <section class="marquee-section">
-        <div class="marquee-track">
-            <div class="marquee-item">PRF Therapy</div>
-            <div class="marquee-item">Halo Fractional Laser</div>
-            <div class="marquee-item">CoolSculpting</div>
-            <div class="marquee-item">Sylfirm X RF</div>
-            <div class="marquee-item">BBL Forever Young</div>
-            <div class="marquee-item">NCTF Mesotherapy</div>
-            <div class="marquee-item">Thread Lifts</div>
-            <div class="marquee-item">J-Plasma Tightening</div>
-            <div class="marquee-item">Dermal Fillers</div>
-            <div class="marquee-item">Botox Injections</div>
-            <div class="marquee-item">PRF Therapy</div>
-            <div class="marquee-item">Halo Fractional Laser</div>
-            <div class="marquee-item">CoolSculpting</div>
-            <div class="marquee-item">Sylfirm X RF</div>
-            <div class="marquee-item">BBL Forever Young</div>
-            <div class="marquee-item">NCTF Mesotherapy</div>
-            <div class="marquee-item">Thread Lifts</div>
-            <div class="marquee-item">J-Plasma Tightening</div>
-            <div class="marquee-item">Dermal Fillers</div>
-            <div class="marquee-item">Botox Injections</div>
-        </div>
-    </section>
-
-    <section class="problem">
-        <div class="container">
-            <h2 class="rv">The Patient Acquisition Challenge</h2>
-            <div class="problems-grid">
-                <div class="problem-card rv">
-                    <div class="problem-number">1</div>
-                    <h3>Empty Appointment Slots</h3>
-                    <p>Your advanced treatments like Sylfirm X and NCTF mesotherapy require skilled hands, but inconsistent bookings leave valuable time slots unfilled despite your expertise.</p>
-                </div>
-                <div class="problem-card rv">
-                    <div class="problem-number">2</div>
-                    <h3>Price-Shopping Patients</h3>
-                    <p>Prospects focus on cost rather than your triple board certification and 300+ published articles, missing the value of your premium aesthetic medicine approach.</p>
-                </div>
-                <div class="problem-card rv">
-                    <div class="problem-number">3</div>
-                    <h3>Limited Online Visibility</h3>
-                    <p>Your expertise in procedures like J-Plasma and PRF therapy isn't reaching patients who would value your scientific approach to aesthetic enhancement.</p>
-                </div>
-                <div class="problem-card rv">
-                    <div class="problem-number">4</div>
-                    <h3>Inconsistent Revenue Flow</h3>
-                    <p>Seasonal fluctuations and unpredictable demand make it difficult to plan for equipment investments and practice growth in Westmount's competitive market.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="treatments" id="treatments">
-        <div class="container">
-            <div class="treatments-container">
-                <div class="treatments-content">
-                    <h2 class="rv">Our Patient Acquisition System</h2>
-                    
-                    <div class="accordion-item rv">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3 class="accordion-title">Strategic Digital Positioning</h3>
-                            <span>+</span>
-                        </div>
-                        <div class="accordion-content">
-                            <p>We position your triple board certification and expertise in advanced procedures like Halo fractional laser and Sylfirm X radiofrequency as premium differentiators. Your scientific approach becomes the foundation for attracting discerning patients who value expertise over price.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item rv">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3 class="accordion-title">Targeted Patient Acquisition</h3>
-                            <span>+</span>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Using sophisticated targeting, we reach patients actively seeking treatments you excel in - from PRF therapy to CoolSculpting. Our campaigns focus on quality over quantity, attracting patients who understand the value of your medical-grade approach.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item rv">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3 class="accordion-title">Educational Content Strategy</h3>
-                            <span>+</span>
-                        </div>
-                        <div class="accordion-content">
-                            <p>We leverage your 300+ published articles and research background to create content that educates prospects about advanced treatments. This positions you as the authority in aesthetic medicine while building trust before they even book.</p>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item rv">
-                        <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <h3 class="accordion-title">Conversion Optimization</h3>
-                            <span>+</span>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Our system nurtures interested prospects through a strategic sequence that highlights your expertise, showcases results from treatments like BBL Forever Young and thread lifts, and makes booking convenient for your Westmount location.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar">
-                    <div class="stat-card rv">
-                        <h3>89%</h3>
-                        <p>Average booking rate from qualified consultations</p>
-                    </div>
+            <div class="stat">
+                <span class="stat-number">25</span>
+                <span class="stat-label">Years
