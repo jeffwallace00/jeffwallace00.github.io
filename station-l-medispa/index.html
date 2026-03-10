@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Izadpanah - Station-L Medispa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #d4af37;
+            --accent-dim: #b8962e;
+            --bg: #0c0c0e;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
+            --border: #2a2a2a;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Geist', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            filter: blur(80px);
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 2;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            left: 80%;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            top: 60%;
+            left: 10%;
+            animation-delay: -10s;
+        }
+
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            top: 40%;
+            left: 70%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(12, 12, 14, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 10px 0;
+            background: rgba(12, 12, 14, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+        }
+
+        /* Utility Classes */
+        .rv {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .rv.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--accent);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero .subtitle {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .hero .description {
+            font-size: 18px;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .vsl-placeholder {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid var(--border);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse-play 3s infinite;
+        }
+
+        .play-button::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid var(--bg);
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+
+        @keyframes pulse-play {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-primary:hover {
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--text);
+            padding: 16px 32px;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            color: var(--text-dim);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Marquee */
+        .marquee-section {
+            padding: 40px 0;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .marquee-track {
+            display: flex;
+            width: calc(250px * 20);
+            animation: scroll-marquee 30s linear infinite;
+        }
+
+        .marquee-item {
+            flex-shrink: 0;
+            width: 250px;
+            text-align: center;
+            padding: 0 20px;
+            color: var(--text-dim);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes scroll-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 80px 0;
+        }
+
+        .problem h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .problem-number {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--accent);
+            color: var(--bg);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .problem-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        /* Treatments Section */
+        .treatments {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .treatments-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .treatments h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            margin-bottom: 40px;
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .accordion-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .accordion-content {
+            padding: 0 25px 25px;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 120px;
+        }
+
+        .stat-card {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--accent);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .stat-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+        }
+
+        .testimonials h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .stars {
+            color: var(--accent);
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            margin-bottom: 30px;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--text-dim);
+        }
+
+        .photo-placeholder {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            color: var(--bg);
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .photo-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            background: linear-gradient(45deg, var(--accent), transparent, var(--accent));
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: -1;
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* CTA Block */
+        .cta-block {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .guarantee-row {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .guarantee-item {
+            text-align: center;
+        }
+
+        .guarantee-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .guarantee-label {
+            color: var(--text-dim);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-block .cta-primary {
+            font-size: 18px;
+            padding: 20px 40px;
+            margin-bottom: 30px;
+        }
+
+        .guarantee-badge {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--accent);
+            padding: 20px 30px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .guarantee-badge strong {
+            color: var(--accent);
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .faq h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-answer {
+            padding: 0 25px 25px;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-content h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .footer-info {
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        .footer-info a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            
+            .treatments-container,
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .sidebar {
+                position: static;
+                order: -1;
+            }
+
+            .guarantee-row {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">Station-L Medispa</div>
+            <ul class="nav-links">
+                <li><a href="#treatments">Treatments</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="nav-cta">Book a Call</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge rv">
+                <div class="pulse-dot"></div>
+                Triple Board-Certified • Westmount
+            </div>
+            <h1 class="rv">Your Expertise Deserves a Full Schedule</h1>
+            <p class="subtitle rv">Transform your aesthetic practice with patients who value premium care</p>
+            <p class="description rv">
+                You've mastered advanced procedures like PRF therapy and Halo fractional laser treatments. 
+                Now discover how to consistently fill your schedule with qualified patients who appreciate your expertise.
+            </p>
+            
+            <div class="vsl-placeholder rv">
+                <div class="play-button" onclick="window.open('https://calendly.com/jeff-yourmarketingdept/30min', '_blank')"></div>
+            </div>
+
+            <div class="hero-ctas rv">
+                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="cta-primary">
+                    Schedule Your Strategy Call →
+                </a>
+                <a href="#treatments" class="cta-secondary">See Our Approach</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid rv">
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>300+</h3>
+                    <p>Published Articles</p>
+                </div>
+                <div class="stat-item">
+                    <h3>25</h3>
+                    <p>Advanced Procedures</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Patient Satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Expert Care</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-item">PRF Therapy</div>
+            <div class="marquee-item">Halo Fractional Laser</div>
+            <div class="marquee-item">CoolSculpting</div>
+            <div class="marquee-item">Sylfirm X RF</div>
+            <div class="marquee-item">BBL Forever Young</div>
+            <div class="marquee-item">NCTF Mesotherapy</div>
+            <div class="marquee-item">Thread Lifts</div>
+            <div class="marquee-item">J-Plasma Tightening</div>
+            <div class="marquee-item">Dermal Fillers</div>
+            <div class="marquee-item">Botox Injections</div>
+            <div class="marquee-item">PRF Therapy</div>
+            <div class="marquee-item">Halo Fractional Laser</div>
+            <div class="marquee-item">CoolSculpting</div>
+            <div class="marquee-item">Sylfirm X RF</div>
+            <div class="marquee-item">BBL Forever Young</div>
+            <div class="marquee-item">NCTF Mesotherapy</div>
+            <div class="marquee-item">Thread Lifts</div>
+            <div class="marquee-item">J-Plasma Tightening</div>
+            <div class="marquee-item">Dermal Fillers</div>
+            <div class="marquee-item">Botox Injections</div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <h2 class="rv">The Patient Acquisition Challenge</h2>
+            <div class="problems-grid">
+                <div class="problem-card rv">
+                    <div class="problem-number">1</div>
+                    <h3>Empty Appointment Slots</h3>
+                    <p>Your advanced treatments like Sylfirm X and NCTF mesotherapy require skilled hands, but inconsistent bookings leave valuable time slots unfilled despite your expertise.</p>
+                </div>
+                <div class="problem-card rv">
+                    <div class="problem-number">2</div>
+                    <h3>Price-Shopping Patients</h3>
+                    <p>Prospects focus on cost rather than your triple board certification and 300+ published articles, missing the value of your premium aesthetic medicine approach.</p>
+                </div>
+                <div class="problem-card rv">
+                    <div class="problem-number">3</div>
+                    <h3>Limited Online Visibility</h3>
+                    <p>Your expertise in procedures like J-Plasma and PRF therapy isn't reaching patients who would value your scientific approach to aesthetic enhancement.</p>
+                </div>
+                <div class="problem-card rv">
+                    <div class="problem-number">4</div>
+                    <h3>Inconsistent Revenue Flow</h3>
+                    <p>Seasonal fluctuations and unpredictable demand make it difficult to plan for equipment investments and practice growth in Westmount's competitive market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="treatments" id="treatments">
+        <div class="container">
+            <div class="treatments-container">
+                <div class="treatments-content">
+                    <h2 class="rv">Our Patient Acquisition System</h2>
+                    
+                    <div class="accordion-item rv">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h3 class="accordion-title">Strategic Digital Positioning</h3>
+                            <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>We position your triple board certification and expertise in advanced procedures like Halo fractional laser and Sylfirm X radiofrequency as premium differentiators. Your scientific approach becomes the foundation for attracting discerning patients who value expertise over price.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item rv">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h3 class="accordion-title">Targeted Patient Acquisition</h3>
+                            <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Using sophisticated targeting, we reach patients actively seeking treatments you excel in - from PRF therapy to CoolSculpting. Our campaigns focus on quality over quantity, attracting patients who understand the value of your medical-grade approach.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item rv">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h3 class="accordion-title">Educational Content Strategy</h3>
+                            <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>We leverage your 300+ published articles and research background to create content that educates prospects about advanced treatments. This positions you as the authority in aesthetic medicine while building trust before they even book.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item rv">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <h3 class="accordion-title">Conversion Optimization</h3>
+                            <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Our system nurtures interested prospects through a strategic sequence that highlights your expertise, showcases results from treatments like BBL Forever Young and thread lifts, and makes booking convenient for your Westmount location.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="stat-card rv">
+                        <h3>89%</h3>
+                        <p>Average booking rate from qualified consultations</p>
+                    </div>
