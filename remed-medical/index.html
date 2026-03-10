@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Georges Gebrayel - ReMed Medical Dubai | Advanced Regenerative Medicine</title>
+    <title>Advanced Regenerative Treatments - ReMed Medical Dubai</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,14 +14,55 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --accent: #c9a84c;
+            --dark-bg: #0c0c0e;
+            --white: #ffffff;
+            --gray: #e0e0e0;
+            --gray-dark: #9ca3af;
+        }
+
         body {
+            background: var(--dark-bg);
+            color: var(--white);
             font-family: 'Geist', sans-serif;
-            background-color: #0c0c0e;
-            color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
+        /* Ambient orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Noise texture */
         body::before {
             content: '';
             position: fixed;
@@ -29,72 +70,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 1;
         }
 
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(100px);
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #c9a84c20, transparent);
-            top: -200px;
-            left: -200px;
-            animation: float1 20s infinite ease-in-out;
-        }
-
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, #c9a84c15, transparent);
-            top: 50%;
-            right: -150px;
-            animation: float2 25s infinite ease-in-out;
-        }
-
-        .orb-3 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #c9a84c10, transparent);
-            bottom: -250px;
-            left: 30%;
-            animation: float3 30s infinite ease-in-out;
-        }
-
-        @keyframes float1 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(100px, -50px) rotate(120deg); }
-            66% { transform: translate(-50px, 100px) rotate(240deg); }
-        }
-
-        @keyframes float2 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(-100px, 50px) rotate(180deg); }
-        }
-
-        @keyframes float3 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(50px, -100px) rotate(90deg); }
-            75% { transform: translate(-100px, -50px) rotate(270deg); }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 3;
-        }
-
-        /* Navigation */
+        /* Nav */
         .nav {
             position: fixed;
             top: 0;
@@ -102,253 +83,267 @@
             right: 0;
             background: rgba(12, 12, 14, 0.95);
             backdrop-filter: blur(20px);
-            z-index: 100;
-            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: padding 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .nav.scrolled {
+            padding: 0.5rem 0;
         }
 
         .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
-        .nav-logo {
+        .nav-brand {
             font-family: 'Instrument Serif', serif;
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: 400;
-            color: #ffffff;
+            color: var(--white);
             text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 2rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: #e0e0e0;
+            color: var(--gray);
             text-decoration: none;
             font-weight: 400;
             transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #c9a84c;
+            color: var(--white);
         }
 
         .nav-cta {
-            background: linear-gradient(45deg, #c9a84c, #d4b55c);
-            color: #000;
-            padding: 12px 24px;
-            border-radius: 50px;
+            background: var(--accent);
+            color: var(--dark-bg);
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            transition: transform 0.3s ease;
         }
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 100px;
             position: relative;
+            z-index: 2;
+            padding: 8rem 0 4rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
             background: rgba(201, 168, 76, 0.1);
             border: 1px solid rgba(201, 168, 76, 0.3);
-            padding: 8px 16px;
-            border-radius: 50px;
-            margin-bottom: 30px;
-            color: #c9a84c;
-            font-size: 14px;
-            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 1;
+            transform: none;
         }
 
         .pulse-dot {
             width: 8px;
             height: 8px;
-            background: #c9a84c;
+            background: var(--accent);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
         }
 
-        .hero-headline {
+        .hero-title {
             font-family: 'Instrument Serif', serif;
-            font-size: clamp(48px, 6vw, 72px);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             line-height: 1.1;
-            margin-bottom: 20px;
-            color: #ffffff;
+            margin-bottom: 1rem;
+            color: var(--white);
+            opacity: 1;
+            transform: none;
         }
 
-        .hero-tagline {
+        .hero-subtitle {
             font-family: 'Instrument Serif', serif;
             font-style: italic;
-            font-size: 24px;
-            color: #c9a84c;
-            margin-bottom: 20px;
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            opacity: 1;
+            transform: none;
         }
 
-        .hero-subhead {
-            font-size: 20px;
-            color: #e0e0e0;
-            margin-bottom: 40px;
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
             max-width: 600px;
+            opacity: 1;
+            transform: none;
         }
 
-        .vsl-placeholder {
-            width: 100%;
-            max-width: 600px;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.05));
-            border: 2px solid rgba(201, 168, 76, 0.3);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 40px;
+        .vsl-container {
             position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .vsl-placeholder:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(201, 168, 76, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+            opacity: 1;
+            transform: none;
         }
 
         .play-button {
             width: 80px;
             height: 80px;
-            background: linear-gradient(45deg, #c9a84c, #d4b55c);
+            background: var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0 auto 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
             animation: pulse 2s infinite;
         }
 
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+
         .play-button::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 20px solid #000;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
+            content: '▶';
+            color: var(--dark-bg);
+            font-size: 1.5rem;
             margin-left: 4px;
         }
 
-        .hero-ctas {
+        .hero-actions {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            opacity: 1;
+            transform: none;
         }
 
-        .btn-primary {
-            background: linear-gradient(45deg, #c9a84c, #d4b55c);
-            color: #000;
-            padding: 16px 32px;
-            border-radius: 50px;
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             display: inline-block;
         }
 
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark-bg);
+        }
+
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(201, 168, 76, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
         }
 
         .btn-secondary {
             background: transparent;
-            color: #ffffff;
-            padding: 16px 32px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-block;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .btn-secondary:hover {
-            border-color: #c9a84c;
-            color: #c9a84c;
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         /* Stats Bar */
-        .stats-bar {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 40px 0;
-            margin: 100px 0;
+        .stats {
+            background: rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 0;
+            opacity: 1;
+            transform: none;
         }
 
-        .stats-container {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
+            gap: 2rem;
             text-align: center;
         }
 
-        .stat-item {
-            color: #ffffff;
+        .stat {
+            opacity: 1;
+            transform: none;
         }
 
         .stat-number {
-            font-family: 'Instrument Serif', serif;
-            font-size: 48px;
-            color: #c9a84c;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
             display: block;
-            margin-bottom: 10px;
         }
 
         .stat-label {
-            font-size: 16px;
-            color: #e0e0e0;
+            color: var(--gray);
+            font-size: 0.875rem;
         }
 
         /* Marquee */
         .marquee {
+            background: rgba(201, 168, 76, 0.05);
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+            padding: 1rem 0;
             overflow: hidden;
-            margin: 100px 0;
-            padding: 20px 0;
-            background: rgba(201, 168, 76, 0.1);
-            border-top: 1px solid rgba(201, 168, 76, 0.3);
-            border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+            opacity: 1;
+            transform: none;
         }
 
         .marquee-content {
             display: flex;
             animation: scroll 30s linear infinite;
-            gap: 60px;
+            gap: 3rem;
         }
 
         .marquee-item {
-            color: #c9a84c;
-            font-weight: 500;
             white-space: nowrap;
-            font-size: 18px;
+            color: var(--accent);
+            font-weight: 500;
         }
 
         @keyframes scroll {
@@ -357,398 +352,419 @@
         }
 
         /* Problem Section */
-        .problem {
-            margin: 100px 0;
-            text-align: center;
-        }
-
-        .section-header {
-            margin-bottom: 60px;
+        .section {
+            padding: 6rem 0;
+            opacity: 1;
+            transform: none;
         }
 
         .section-title {
             font-family: 'Instrument Serif', serif;
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-
-        .section-subtitle {
-            font-size: 20px;
-            color: #e0e0e0;
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--white);
+            opacity: 1;
+            transform: none;
         }
 
         .problem-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .problem-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 40px 30px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            opacity: 1;
+            transform: none;
         }
 
         .problem-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #c9a84c, #d4b55c);
-            color: #000;
+            position: absolute;
+            top: -15px;
+            left: 2rem;
+            background: var(--accent);
+            color: var(--dark-bg);
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Instrument Serif', serif;
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0 auto 20px;
+            font-weight: 700;
+            font-size: 0.875rem;
         }
 
-        .problem-card h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #ffffff;
+        .problem-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--white);
         }
 
-        .problem-card p {
-            color: #e0e0e0;
+        .problem-description {
+            color: var(--gray);
         }
 
         /* Treatments Section */
         .treatments {
-            margin: 100px 0;
+            background: rgba(255, 255, 255, 0.02);
+            opacity: 1;
+            transform: none;
+        }
+
+        .treatments-content {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 60px;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: start;
         }
 
         .accordion {
-            space-y: 20px;
+            opacity: 1;
+            transform: none;
         }
 
         .accordion-item {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
             overflow: hidden;
         }
 
         .accordion-header {
-            padding: 25px;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            color: var(--white);
+            font-weight: 600;
         }
 
         .accordion-header:hover {
             background: rgba(255, 255, 255, 0.05);
         }
 
-        .accordion-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
         .accordion-content {
-            padding: 0 25px 25px;
-            color: #e0e0e0;
-            display: none;
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--gray);
         }
 
-        .accordion-item.active .accordion-content {
-            display: block;
+        .accordion-content.active {
+            padding: 1.5rem;
+            max-height: 200px;
         }
 
         .treatments-sidebar {
             position: sticky;
-            top: 120px;
-            height: fit-content;
+            top: 6rem;
+            opacity: 1;
+            transform: none;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.05));
+            background: rgba(201, 168, 76, 0.1);
             border: 1px solid rgba(201, 168, 76, 0.3);
-            padding: 40px;
-            border-radius: 20px;
+            border-radius: 1rem;
+            padding: 2rem;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
         }
 
         .stat-card-number {
-            font-family: 'Instrument Serif', serif;
-            font-size: 60px;
-            color: #c9a84c;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
         .stat-card-label {
-            color: #e0e0e0;
-            font-size: 16px;
+            color: var(--white);
+            font-weight: 500;
         }
 
-        /* Testimonials */
-        .testimonials {
-            margin: 100px 0;
+        .cta-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
             text-align: center;
         }
 
+        .cta-card h3 {
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .cta-card p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        /* Testimonials */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
+            gap: 2rem;
         }
 
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            padding: 40px;
-            border-radius: 20px;
+        .testimonial {
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            opacity: 1;
+            transform: none;
         }
 
         .stars {
-            color: #c9a84c;
-            font-size: 20px;
-            margin-bottom: 20px;
+            color: var(--accent);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
         }
 
         .testimonial-text {
-            color: #e0e0e0;
-            margin-bottom: 20px;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
             font-style: italic;
         }
 
         .testimonial-author {
-            color: #ffffff;
+            color: var(--white);
             font-weight: 600;
         }
 
-        /* About Section */
-        .about {
-            margin: 100px 0;
+        /* About */
+        .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
             align-items: center;
         }
 
-        .about-text h2 {
+        .about-text {
+            opacity: 1;
+            transform: none;
+        }
+
+        .about-text h3 {
             font-family: 'Instrument Serif', serif;
-            font-size: 42px;
-            margin-bottom: 30px;
-            color: #ffffff;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
         }
 
-        .about-quote {
-            font-size: 20px;
-            color: #c9a84c;
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .quote {
+            background: rgba(201, 168, 76, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
             font-style: italic;
-            margin-bottom: 30px;
-            line-height: 1.4;
-        }
-
-        .about-bio {
-            color: #e0e0e0;
-            margin-bottom: 20px;
+            color: var(--white);
         }
 
         .about-photo {
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #c9a84c, #d4b55c);
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.2) 0%, rgba(201, 168, 76, 0.1) 50%, transparent 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-photo::before {
-            content: '';
-            position: absolute;
-            inset: 3px;
-            border-radius: 50%;
-            background: #0c0c0e;
-        }
-
-        .photo-initials {
             font-family: 'Instrument Serif', serif;
-            font-size: 72px;
-            color: #c9a84c;
-            font-weight: bold;
-            z-index: 1;
+            font-size: 4rem;
+            color: var(--accent);
+            border: 3px solid rgba(201, 168, 76, 0.3);
+            margin: 0 auto;
+            opacity: 1;
+            transform: none;
         }
 
         /* CTA Block */
         .cta-block {
-            margin: 100px 0;
+            background: rgba(201, 168, 76, 0.05);
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
             text-align: center;
-            padding: 80px 0;
-            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.05));
-            border-radius: 30px;
+            opacity: 1;
+            transform: none;
         }
 
         .guarantee-row {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 60px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .guarantee-item {
             text-align: center;
-            color: #ffffff;
         }
 
         .guarantee-number {
-            font-family: 'Instrument Serif', serif;
-            font-size: 48px;
-            color: #c9a84c;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
             display: block;
-            margin-bottom: 10px;
+        }
+
+        .guarantee-label {
+            color: var(--white);
+            font-size: 0.875rem;
+        }
+
+        .cta-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .cta-subtitle {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
         }
 
         .guarantee-badge {
-            background: linear-gradient(45deg, #c9a84c, #d4b55c);
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            color: #22c55e;
             font-weight: 600;
-            margin-top: 30px;
-            display: inline-block;
+            margin-top: 1.5rem;
+        }
+
+        .guarantee-badge::before {
+            content: '✓';
+            font-weight: bold;
         }
 
         /* FAQ */
-        .faq {
-            margin: 100px 0;
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .faq-item {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
-            overflow: hidden;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            opacity: 1;
+            transform: none;
         }
 
         .faq-question {
-            padding: 25px;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
             cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            color: #ffffff;
+            color: var(--white);
             font-weight: 600;
         }
 
-        .faq-question:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
         .faq-answer {
-            padding: 0 25px 25px;
-            color: #e0e0e0;
-            display: none;
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--gray);
         }
 
-        .faq-item.active .faq-answer {
-            display: block;
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 200px;
         }
 
         /* Footer */
         .footer {
+            background: rgba(0, 0, 0, 0.5);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 60px 0;
+            padding: 3rem 0;
             text-align: center;
-            color: #e0e0e0;
-        }
-
-        .footer h3 {
-            font-family: 'Instrument Serif', serif;
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #c9a84c;
-        }
-
-        .footer p {
-            margin-bottom: 10px;
-        }
-
-        /* Reveal Animation */
-        .reveal {
             opacity: 1;
             transform: none;
-            transition: all 0.8s ease;
         }
 
-        .reveal.reveal-visible {
-            opacity: 1;
-            transform: translateY(0);
+        .footer-content h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
         }
 
-        /* Mobile Responsive */
+        .footer-content p {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
 
-            .hero-ctas {
+            .hero-actions {
                 flex-direction: column;
             }
 
-            .treatments {
+            .treatments-content,
+            .about-content {
                 grid-template-columns: 1fr;
-            }
-
-            .about {
-                grid-template-columns: 1fr;
-                text-align: center;
+                gap: 2rem;
             }
 
             .guarantee-row {
                 flex-direction: column;
-                gap: 30px;
+                gap: 1rem;
             }
 
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
+            .marquee-content {
+                gap: 1rem;
             }
+        }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 1;
+            transform: none;
+            transition: all 0.6s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
 
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" id="nav">
         <div class="nav-container">
-            <a href="#" class="nav-logo">ReMed Medical</a>
+            <a href="#" class="nav-brand">ReMed Medical</a>
             <ul class="nav-links">
                 <li><a href="#treatments">Treatments</a></li>
                 <li><a href="#about">About</a></li>
@@ -763,127 +779,128 @@
     <section class="hero">
         <div class="container">
             <div class="hero-badge reveal">
-                <div class="pulse-dot"></div>
-                Leading Regenerative Medicine in Dubai
+                <span class="pulse-dot"></span>
+                Advanced Regenerative Medicine in Dubai
             </div>
-            <h1 class="hero-headline reveal">You Have World-Class Regenerative Treatments. Where Are The Patients?</h1>
-            <p class="hero-tagline reveal">Dubai's premier regenerative medicine practice deserves a patient pipeline to match</p>
-            <p class="hero-subhead reveal">Your stem cell therapy and advanced treatments can transform lives. But without consistent patient acquisition, your expertise reaches only a fraction of those who need it most.</p>
-            <div class="vsl-placeholder reveal">
+            <h1 class="hero-title reveal">Your Clinical Excellence Deserves a Full Patient Pipeline</h1>
+            <p class="hero-subtitle reveal">Stop watching competitors book consultations while your schedule has gaps</p>
+            <p class="hero-description reveal">You've mastered stem cell therapy, PRP treatments, and cellular regeneration. But world-class medical expertise means nothing if patients can't find you. Let's bridge that gap.</p>
+            
+            <div class="vsl-container reveal">
                 <div class="play-button"></div>
+                <h3 style="color: #ffffff; margin-bottom: 0.5rem;">Watch: How Dubai's Top Regenerative Clinics Fill Their Schedules</h3>
+                <p style="color: #e0e0e0; font-size: 0.875rem;">3-minute case study on patient acquisition that works</p>
             </div>
-            <div class="hero-ctas reveal">
-                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn-primary">Get 40+ Qualified Patients</a>
-                <a href="#treatments" class="btn-secondary">See Our Process</a>
+            
+            <div class="hero-actions reveal">
+                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn btn-primary">Get Your Growth Plan</a>
+                <a href="#problem" class="btn btn-secondary">See The Problem</a>
             </div>
         </div>
     </section>
 
     <!-- Stats Bar -->
-    <section class="stats-bar reveal">
+    <section class="stats reveal">
         <div class="container">
-            <div class="stats-container">
-                <div class="stat-item">
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">Successful Regenerative Treatments</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">15+</span>
-                    <span class="stat-label">Advanced Therapy Modalities</span>
-                </div>
-                <div class="stat-item">
+            <div class="stats-grid">
+                <div class="stat">
                     <span class="stat-number">95%</span>
                     <span class="stat-label">Patient Satisfaction Rate</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat">
                     <span class="stat-number">8+</span>
-                    <span class="stat-label">Years Clinical Excellence</span>
+                    <span class="stat-label">Advanced Treatment Modalities</span>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Personalized Care Support</span>
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Years Combined Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Successful Regenerative Treatments</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">12-48hrs</span>
+                    <span class="stat-label">Typical Recovery Time</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Marquee -->
-    <section class="marquee reveal">
+    <div class="marquee reveal">
         <div class="marquee-content">
-            <div class="marquee-item">STEM CELL THERAPY</div>
-            <div class="marquee-item">PRP TREATMENTS</div>
-            <div class="marquee-item">EXOSOME THERAPY</div>
-            <div class="marquee-item">OZONE THERAPY</div>
-            <div class="marquee-item">IV THERAPY</div>
-            <div class="marquee-item">NEURAL REGENERATION</div>
-            <div class="marquee-item">PHOTOBIOMODULATION</div>
-            <div class="marquee-item">MAGNETIC THERAPY</div>
-            <div class="marquee-item">TISSUE REGENERATION</div>
-            <div class="marquee-item">ANTI-AGING TREATMENTS</div>
-            <div class="marquee-item">STEM CELL THERAPY</div>
-            <div class="marquee-item">PRP TREATMENTS</div>
-            <div class="marquee-item">EXOSOME THERAPY</div>
-            <div class="marquee-item">OZONE THERAPY</div>
-            <div class="marquee-item">IV THERAPY</div>
+            <span class="marquee-item">Stem Cell Therapy</span>
+            <span class="marquee-item">PRP Treatment</span>
+            <span class="marquee-item">Ozone Therapy</span>
+            <span class="marquee-item">Photobiomodulation</span>
+            <span class="marquee-item">Neural Regeneration</span>
+            <span class="marquee-item">Anti-Aging Treatments</span>
+            <span class="marquee-item">IV Therapy</span>
+            <span class="marquee-item">Magnetic Therapy</span>
+            <span class="marquee-item">Exosomes Therapy</span>
+            <span class="marquee-item">Tissue Repair</span>
+            <span class="marquee-item">Cellular Regeneration</span>
+            <span class="marquee-item">Biofeedback Systems</span>
         </div>
     </section>
 
     <!-- Problem Section -->
-    <section class="problem">
+    <section class="section" id="problem">
         <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">The Patient Acquisition Challenge</h2>
-                <p class="section-subtitle">You have the expertise to heal at the cellular level, but these gaps keep qualified patients from finding you</p>
-            </div>
+            <h2 class="section-title reveal">The Gap Between Your Expertise and Your Growth</h2>
             <div class="problem-grid">
                 <div class="problem-card reveal">
                     <div class="problem-number">1</div>
-                    <h3>Invisible Online Presence</h3>
-                    <p>Your advanced regenerative treatments aren't reaching patients searching for alternatives to surgery and pharmaceuticals in Dubai's competitive healthcare market.</p>
+                    <h3 class="problem-title">Invisible Online Presence</h3>
+                    <p class="problem-description">Patients searching for "stem cell therapy Dubai" or "regenerative medicine" can't find your practice. Your competitors with inferior treatments are capturing your ideal patients.</p>
                 </div>
                 <div class="problem-card reveal">
                     <div class="problem-number">2</div>
-                    <h3>Generic Health Marketing</h3>
-                    <p>Standard medical marketing fails to communicate the transformative potential of stem cell therapy, exosome treatments, and cellular regeneration.</p>
+                    <h3 class="problem-title">Generic Marketing Messaging</h3>
+                    <p class="problem-description">Your current marketing speaks in medical jargon instead of patient benefits. Prospects don't understand how PRP therapy or neural regeneration will solve their pain problems.</p>
                 </div>
                 <div class="problem-card reveal">
                     <div class="problem-number">3</div>
-                    <h3>Educated Patient Gap</h3>
-                    <p>Patients don't understand how regenerative medicine differs from conventional treatments, creating hesitation and delayed decisions.</p>
+                    <h3 class="problem-title">Inconsistent Patient Flow</h3>
+                    <p class="problem-description">Some weeks are fully booked, others have gaps. You need predictable systems that consistently deliver qualified consultations for your high-value treatments.</p>
                 </div>
                 <div class="problem-card reveal">
                     <div class="problem-number">4</div>
-                    <h3>Inconsistent Lead Flow</h3>
-                    <p>Referrals and word-of-mouth aren't enough. You need predictable patient acquisition to match your clinical capabilities and scale your impact.</p>
+                    <h3 class="problem-title">Wrong Patient Expectations</h3>
+                    <p class="problem-description">Prospects arrive unprepared for investment levels or treatment timelines. You spend consultation time educating instead of closing qualified patients ready to begin.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Treatments Section -->
-    <section class="treatments" id="treatments">
+    <section class="section treatments" id="treatments">
         <div class="container">
-            <div>
-                <div class="section-header reveal">
-                    <h2 class="section-title">Our Treatment Specialties</h2>
-                    <p class="section-subtitle">Advanced regenerative therapies that restore, repair, and rejuvenate</p>
-                </div>
+            <h2 class="section-title reveal">Advanced Regenerative Solutions</h2>
+            <div class="treatments-content">
                 <div class="accordion reveal">
-                    <div class="accordion-item active">
+                    <div class="accordion-item">
                         <div class="accordion-header">
-                            <span class="accordion-title">Stem Cell Therapy</span>
+                            <span>Stem Cell Therapy</span>
                             <span>+</span>
                         </div>
                         <div class="accordion-content">
-                            <p>Harness your body's natural healing power with our advanced stem cell treatments. We repair damaged tissue, reduce inflammation, and regenerate cells for conditions ranging from joint pain to neurological disorders, offering hope where conventional medicine falls short.</p>
+                            <p>Harness your body's natural healing power with cutting-edge stem cell treatments for joint pain, tissue repair, and cellular regeneration. Minimal downtime, maximum results.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <div class="accordion-header">
-                            <span class="accordion-title">Exosome Therapy</span>
+                            <span>PRP & Platelet Therapy</span>
                             <span>+</span>
                         </div>
                         <div class="accordion-content">
-                            <p>Revolutionary cellular communication therapy using powerful exosomes to accelerate healing and tissue regeneration. These microscopic messengers enhance cellular repair processes and reduce recovery time significantly.</p>
+                            <p>Accelerate healing using your own platelet-rich plasma. Ideal for sports injuries, chronic pain, and tissue regeneration without surgery.</p>
                         </div>
                     </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>Ozone & Prolozone Therapy</span>
+                            <span>+</span>
+                        </div>
+                        <div class="
