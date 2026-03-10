@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE Vida - Premium Wellness & Medical Aesthetics | Syracuse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0c0c0e;
+            --accent: #8b5fbf;
+            --accent-light: rgba(139, 95, 191, 0.15);
+            --text: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Geist', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float1 8s ease-in-out infinite;
+        }
+        
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 95, 191, 0.1) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: float2 10s ease-in-out infinite;
+        }
+        
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -30px) rotate(180deg); }
+        }
+        
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, -30px) rotate(-180deg); }
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+            background: rgba(12, 12, 14, 0.8);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        
+        .nav.scrolled {
+            padding: 0.5rem 2rem;
+        }
+        
+        .nav-brand {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text);
+        }
+        
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent), rgba(139, 95, 191, 0.8));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 95, 191, 0.3);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 100px;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-light);
+            border: 1px solid rgba(139, 95, 191, 0.3);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+        
+        .hero-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text), var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-tagline {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        
+        .vsl-container {
+            position: relative;
+            background: linear-gradient(135deg, rgba(139, 95, 191, 0.1), rgba(139, 95, 191, 0.05));
+            border: 1px solid rgba(139, 95, 191, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .vsl-play {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent), rgba(139, 95, 191, 0.8));
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .vsl-play:hover {
+            transform: scale(1.1);
+        }
+        
+        .vsl-play::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+        
+        .vsl-text {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary, .cta-secondary {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cta-primary {
+            background: linear-gradient(135deg, var(--accent), rgba(139, 95, 191, 0.8));
+            color: white;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 95, 191, 0.3);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        
+        .cta-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Marquee */
+        .marquee-section {
+            padding: 4rem 0;
+            overflow: hidden;
+        }
+        
+        .marquee {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            gap: 4rem;
+        }
+        
+        .marquee-item {
+            background: linear-gradient(135deg, rgba(139, 95, 191, 0.1), rgba(139, 95, 191, 0.05));
+            border: 1px solid rgba(139, 95, 191, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+        
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: 6rem 0;
+        }
+        
+        .problem-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .problem-header h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+        
+        .problem-header p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .problem-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .problem-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), rgba(139, 95, 191, 0.8));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .problem-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        /* Treatments Section */
+        .treatments {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(139, 95, 191, 0.03), transparent);
+        }
+        
+        .treatments-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        
+        .treatments-accordion {
+            space-y: 1rem;
+        }
+        
+        .accordion-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .accordion-content {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-muted);
+            display: none;
+        }
+        
+        .accordion-item.active .accordion-content {
+            display: block;
+        }
+        
+        .treatments-sidebar {
+            position: sticky;
+            top: 120px;
+            space-y: 2rem;
+        }
+        
+        .stat-card, .cta-card {
+            background: linear-gradient(135deg, rgba(139, 95, 191, 0.1), rgba(139, 95, 191, 0.05));
+            border: 1px solid rgba(139, 95, 191, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 0;
+        }
+        
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .testimonials-header h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .testimonial-stars {
+            color: #fbbf24;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-text {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+        }
+        
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .about-quote {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.125rem;
+            color: var(--accent);
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .about-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), rgba(139, 95, 191, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), rgba(139, 95, 191, 0.3));
+            filter: blur(20px);
+            z-index: -1;
+        }
+        
+        /* CTA Block */
+        .cta-block {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(139, 95, 191, 0.05), transparent);
+        }
+        
+        .guarantee-row {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .guarantee-item {
+            text-align: center;
+        }
+        
+        .guarantee-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .guarantee-text {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent), rgba(139, 95, 191, 0.8));
+            color: white;
+            padding: 1.25rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 95, 191, 0.4);
+        }
+        
+        .guarantee-badge {
+            background: rgba(139, 95, 191, 0.1);
+            border: 1px solid rgba(139, 95, 191, 0.2);
+            color: var(--accent);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 0;
+        }
+        
+        .faq-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .faq-header h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .footer-content {
+            color: var(--text-muted);
+        }
+        
+        .footer-content h3 {
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-content p {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Reveal Animation */
+        .rv {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .rv.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hero-ctas {
+                flex-direction: column;
+            }
+            
+            .treatments-content,
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .guarantee-row {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .about-image {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-brand">ONE Vida</a>
+        <ul class="nav-links">
+            <li><a href="#treatments">Treatments</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Results</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="nav-cta">Book a Call</a>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content rv">
+                <div class="hero-badge">
+                    <span>Syracuse's Premier Wellness Center</span>
+                </div>
+                
+                <h1 class="hero-title">Your Clinical Excellence Deserves a Full Patient Schedule</h1>
+                
+                <p class="hero-tagline">Transform empty appointment slots into consistent revenue</p>
+                
+                <p class="hero-subtitle">
+                    You've mastered advanced aesthetics and wellness treatments. Now let's fill your calendar with qualified patients who value premium care and are ready to invest in their transformation.
+                </p>
+                
+                <div class="vsl-container">
+                    <button class="vsl-play"></button>
+                    <p class="vsl-text">Watch how we've helped wellness centers like yours achieve 40-60 qualified consultations in 90 days</p>
+                </div>
+                
+                <div class="hero-ctas">
+                    <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="cta-primary">
+                        Get Your Patient Pipeline Strategy →
+                    </a>
+                    <a href="#treatments" class="cta-secondary">
+                        View Our Process ↓
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid rv">
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Years Combined Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2,500+</h3>
+                    <p>Successful Treatments</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Patient Satisfaction Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3>25+</h3>
+                    <p>Treatment Modalities</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Patient Support Available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Marquee -->
+    <section class="marquee-section">
+        <div class="marquee">
+            <div class="marquee-item">Hormone Replacement Therapy</div>
+            <div class="marquee-item">Medical Weight Loss</div>
+            <div class="marquee-item">Laser Hair Removal</div>
+            <div class="marquee-item">Body Sculpting</div>
+            <div class="marquee-item">Exosome Therapy</div>
+            <div class="marquee-item">IV Vitamin Therapy</div>
+            <div class="marquee-item">Skin Resurfacing</div>
+            <div class="marquee-item">Peptide Treatments</div>
+            <div class="marquee-item">Menopause Management</div>
+            <div class="marquee-item">Hair Restoration</div>
+            <div class="marquee-item">Anti-Aging Protocols</div>
+            <div class="marquee-item">Cellular Regeneration</div>
+        </div>
+    </section>
+    
+    <!-- Problem Section -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="problem-header rv">
+                <h2>The Patient Acquisition Gap</h2>
+                <p>Even exceptional wellness centers struggle with inconsistent patient flow. Here's what's keeping your schedule from being fully booked:</p>
+            </div>
+            
+            <div class="problem-grid">
+                <div class="problem-card rv">
+                    <div class="problem-number">1</div>
+                    <h3>Feast or Famine Scheduling</h3>
+                    <p>One week you're completely booked, the next you have gaps. Without predictable patient acquisition systems, revenue becomes unpredictable and growth stagnates.</p>
+                </div>
+                
+                <div class="problem-card rv">
+                    <div class="problem-number">2</div>
+                    <h3>Price Shopping vs. Value Seeking</h3>
+                    <p>Generic marketing attracts bargain hunters instead of patients who understand the value of premium wellness treatments and are willing to invest in comprehensive care.</p>
+                </div>
+                
+                <div class="problem-card rv">
+                    <div class="problem-number">3</div>
+                    <h3>Limited Local Awareness</h3>
+                    <p>Many potential patients in Syracuse don
