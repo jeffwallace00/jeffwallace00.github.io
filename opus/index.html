@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Porter - Advanced Regenerative Medicine & Sports Recovery | London</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0c0c0e;
+            --accent: #c9a84c;
+            --text: #ffffff;
+            --text-muted: #a1a1aa;
+            --border: rgba(255,255,255,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Geist', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(76,175,201,0.1) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: float 25s infinite ease-in-out reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, -30px) rotate(90deg); }
+            50% { transform: translate(-30px, 50px) rotate(180deg); }
+            75% { transform: translate(-50px, -20px) rotate(270deg); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .wide-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(12, 12, 14, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav.shrink {
+            padding: 10px 0;
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            transition: padding 0.3s ease;
+        }
+        
+        .nav.shrink .nav-content {
+            padding: 15px 20px;
+        }
+        
+        .nav-logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--text);
+            text-decoration: none;
+        }
+        
+        .nav.shrink .nav-logo {
+            font-size: 24px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-cta {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            background: #b8974b;
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            text-align: center;
+        }
+        
+        .hero-badge {
+            background: rgba(201,168,76,0.1);
+            border: 1px solid rgba(201,168,76,0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        
+        .hero-tagline {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+        
+        .hero-subhead {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .vsl-container {
+            position: relative;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 50px 0;
+            border: 1px solid var(--border);
+        }
+        
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+        
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid var(--bg);
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #b8974b;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            padding: 16px 32px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .stats-bar {
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 60px 0;
+            margin: 100px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+        
+        .marquee {
+            overflow: hidden;
+            background: rgba(201,168,76,0.1);
+            padding: 20px 0;
+            margin: 100px 0;
+            border: 1px solid rgba(201,168,76,0.2);
+        }
+        
+        .marquee-content {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            white-space: nowrap;
+        }
+        
+        .marquee-item {
+            color: var(--accent);
+            font-weight: 500;
+            padding: 0 50px;
+            font-size: 18px;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .problem {
+            padding: 100px 0;
+        }
+        
+        .problem h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .problem-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .problem-number {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--accent);
+            color: var(--bg);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .problem-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+        
+        .treatments {
+            padding: 100px 0;
+            background: rgba(255,255,255,0.02);
+        }
+        
+        .treatments-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .treatments h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            margin-bottom: 40px;
+        }
+        
+        .accordion-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .accordion-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 20px;
+        }
+        
+        .accordion-icon {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .accordion-content.active {
+            max-height: 200px;
+        }
+        
+        .accordion-content-inner {
+            padding: 0 25px 25px;
+            color: var(--text-muted);
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 120px;
+        }
+        
+        .stat-card {
+            background: rgba(201,168,76,0.1);
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .cta-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .cta-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .testimonials {
+            padding: 100px 0;
+        }
+        
+        .testimonials h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+        }
+        
+        .stars {
+            color: var(--accent);
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+        }
+        
+        .about {
+            padding: 100px 0;
+            background: rgba(255,255,255,0.02);
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+        
+        .about-quote {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .about-bio {
+            color: var(--text-muted);
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        .photo-placeholder {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,168,76,0.2) 0%, rgba(201,168,76,0.1) 50%, transparent 100%);
+            border: 2px solid rgba(201,168,76,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            color: var(--accent);
+            margin: 0 auto;
+        }
+        
+        .cta-block {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .guarantee-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .guarantee-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .guarantee-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 36px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .guarantee-text {
+            color: var(--text-muted);
+        }
+        
+        .cta-main {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            display: inline-block;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-main:hover {
+            background: #b8974b;
+            transform: translateY(-3px);
+        }
+        
+        .guarantee-badge {
+            background: rgba(76,175,80,0.1);
+            border: 1px solid rgba(76,175,80,0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: #4caf50;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        .faq {
+            padding: 100px 0;
+            background: rgba(255,255,255,0.02);
+        }
+        
+        .faq h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Instrument Serif', serif;
+            font-size: 18px;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-muted);
+        }
+        
+        .faq-answer.active {
+            max-height: 200px;
+        }
+        
+        .faq-answer-inner {
+            padding: 0 25px 25px;
+        }
+        
+        .footer {
+            background: rgba(255,255,255,0.03);
+            border-top: 1px solid var(--border);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .footer-name {
+            font-family: 'Instrument Serif', serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            color: var(--text-muted);
+        }
+        
+        .footer-details a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        
+        .footer-details a:hover {
+            color: var(--accent);
+        }
+        
+        .rv {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .rv.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .treatments-container,
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+            
+            .guarantee-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hero-subhead {
+                font-size: 18px;
+            }
+            
+            .vsl-container {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <nav class="nav" id="nav">
+        <div class="nav-content">
+            <a href="#" class="nav-logo">Opus Biological</a>
+            <ul class="nav-links">
+                <li><a href="#treatments">Treatments</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Results</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="nav-cta">Book a Call</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge rv">
+                <span class="pulse-dot"></span>
+                Featured in Tatler's Best Doctors 2025
+            </div>
+            <h1 class="rv">Your Clinical Excellence Deserves a Full Practice</h1>
+            <p class="hero-tagline rv">Elite regenerative medicine shouldn't wait for patient discovery</p>
+            <p class="hero-subhead rv">You've mastered stem cell therapy and advanced treatments that transform lives. But world-class medicine means nothing if the right patients never find you.</p>
+            
+            <div class="vsl-container rv">
+                <div class="play-button"></div>
+                <p>Watch: How Elite Practitioners Fill Their Schedule with Qualified Consultations</p>
+            </div>
+            
+            <div class="cta-buttons rv">
+                <a href="https://calendly.com/jeff-yourmarketingdept/30min" class="btn-primary">Get 40-60 Consultations in 90 Days</a>
+                <a href="#treatments" class="btn-secondary">View Treatment Marketing</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid rv">
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Treatment Success Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Elite Athletes Treated</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Years in Regenerative Medicine</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24hr</h3>
+                    <p>Average Pain Reduction</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Confidential Environment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="marquee">
+        <div class="marquee-content">
+            <span class="marquee-item">Stem Cell Therapy</span>
+            <span class="marquee-item">PRP Treatment</span>
+            <span class="marquee-item">Sports Medicine</span>
+            <span class="marquee-item">Regenerative Medicine</span>
+            <span class="marquee-item">Performance Enhancement</span>
+            <span class="marquee-item">Joint Repair</span>
+            <span class="marquee-item">Elite Athlete Recovery</span>
+            <span class="marquee-item">Body Optimization</span>
+            <span class="marquee-item">Mesenchymal Stem Cells</span>
+            <span class="marquee-item">Performance Psychology</span>
+            <span class="marquee-item">Advanced Physiotherapy</span>
+            <span class="marquee-item">Pain Management</span>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <h2 class="rv">The Patient Acquisition Crisis Facing Elite Practitioners</h2>
+            <div class="problem-grid rv">
+                <div class="problem-card">
+                    <div class="problem-number">1</div>
+                    <h3>Treatment Demand Exceeds Discovery</h3>
+                    <p>London has thousands seeking advanced regenerative medicine, but they can't find practitioners with your expertise. Traditional referrals aren't enough.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">2</div>
+                    <h3>Price-Driven Patient Inquiries</h3>
+                    <p>Your consultation requests come from cost-conscious patients rather than those who value cutting-edge treatment and proven results.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">3</div>
+                    <h3>Inconsistent Patient Pipeline</h3>
+                    <p>Some weeks are fully booked while others have gaps, creating unpredictable revenue and preventing optimal practice growth.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">4</div>
+                    <h3>Generic Marketing Doesn't Convert</h3>
+                    <p>Standard medical marketing fails to communicate the sophistication and life-changing potential of your regenerative medicine approach.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="treatments" id="treatments">
+        <div class="container">
+            <div class="treatments-container">
+                <div class="treatments-content">
+                    <h2 class="rv">Specialized Patient Acquisition for Advanced Medicine</h2>
+                    
+                    <div class="accordion-item rv">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="accordion-title">Stem Cell & Regenerative Medicine Marketing</span>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                Targeted campaigns reaching patients seeking mesenchymal stem cell therapy, tissue repair, and non-invasive joint regeneration. We position your advanced treatments to attract informed patients ready to invest in lasting results.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item rv">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="accordion-title">Elite Sports Medicine Patient Pipeline</span>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                Connect with professional athletes, sports enthusiasts, and performance-focused individuals who need specialized recovery and injury prevention. Our campaigns highlight your elite sports medicine background.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item rv">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="accordion-title">Performance Optimization Client Attraction</span>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                Reach high-achieving professionals seeking body optimization and
